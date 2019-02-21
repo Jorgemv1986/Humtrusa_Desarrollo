@@ -80,6 +80,7 @@ public class Humtrusa_productos extends javax.swing.JDialog {
         table = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -169,6 +170,13 @@ public class Humtrusa_productos extends javax.swing.JDialog {
             }
         });
 
+        jButton5.setText("MODIFICAR PRODUCTOS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,8 +213,10 @@ public class Humtrusa_productos extends javax.swing.JDialog {
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(73, 73, 73))
         );
@@ -250,7 +260,8 @@ public class Humtrusa_productos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
@@ -294,9 +305,9 @@ public class Humtrusa_productos extends javax.swing.JDialog {
             i = table.getSelectedRow();
             objeto = devuelveObjeto(table.getValueAt(i, 0).toString(), listapro);
             if (objeto != null) {
-                modificar_productos Man = new modificar_productos(new javax.swing.JFrame(), true,objeto);
+                MenuPreVentas mpv = new MenuPreVentas(new javax.swing.JFrame(), true,objeto);
                 this.setVisible(false);
-                Man.setVisible(true);
+                mpv.setVisible(true);
                 limpiarTabla();
             }
         }
@@ -325,6 +336,22 @@ public class Humtrusa_productos extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int i = 0;
+        
+        int rowindex = table.getSelectedRow();
+        if ( rowindex > -1) {
+            i = table.getSelectedRow();
+            objeto = devuelveObjeto(table.getValueAt(i, 0).toString(), listapro);
+            if (objeto != null) {
+                modificar_productos Man = new modificar_productos(new javax.swing.JFrame(), true,objeto);
+                this.setVisible(false);
+                Man.setVisible(true);
+                limpiarTabla();
+            }
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     public JoinProductos devuelveObjeto(String datos, ArrayList<JoinProductos> listarobj) {
         JoinProductos objeto1 = null;
@@ -384,6 +411,7 @@ public class Humtrusa_productos extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
