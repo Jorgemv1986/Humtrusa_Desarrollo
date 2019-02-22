@@ -5,6 +5,9 @@
  */
 package com.humtrusa.views;
 
+import com.humtrusa.componentes.Tablas;
+import com.humtrusa.dao.CRUD;
+import com.humtrusa.entidades.Detalle_ventas;
 import com.humtrusa.entidades.JoinProductos;
 import java.awt.Dimension;
 import java.awt.Event;
@@ -27,33 +30,34 @@ import javax.swing.JFrame;
  */
 public class MenuPreVentas extends javax.swing.JDialog {
 
-//    ArrayList<ListarDetalleVentas> ListarDetalle = new ArrayList<ListarDetalleVentas>();
-//    CRUD crud = new CRUD();
+    
+    ArrayList<Detalle_ventas> ListarDetalle=new ArrayList<Detalle_ventas>();
+    CRUD crud = new CRUD();
     JoinProductos obj = new JoinProductos();
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         
+
     }
 
-    public MenuPreVentas(java.awt.Frame parent, boolean modal, JoinProductos obj1) {
-        super(parent, modal);
-        initComponents();
-        this.setLocationRelativeTo(null);
-        obj = obj1;
-        llenarFormulario();
-        
+//    public MenuPreVentas(java.awt.Frame parent, boolean modal, JoinProductos obj1) {
+//        super(parent, modal);
+//        initComponents();
+//        this.setLocationRelativeTo(null);
+//        llenarFormulario();
+   //  ListarDetalle = new ArrayList<Detalle_ventas>();
 //        this.setLocationRelativeTo(null);
 //        this.setResizable(false);
 //        TxtFecha.setText(FechaActual());
+//    }
 
-    }
-
-    private void llenarFormulario() {
-        TxtProdNombre.setText(obj.getNombre());
-        TxtProdPrecio.setText(obj.getPrecio_Vent_A().toEngineeringString());
-    }
+//    public  void llenarFormulario() {
+//        TxtProdNombre.setText(obj.getNombre());
+//        TxtProdPrecio.setText(obj.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,7 +91,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel20 = new javax.swing.JLabel();
         TxtProdCantidad = new javax.swing.JTextField();
         TxtProdSubtotal = new javax.swing.JTextField();
-        TxtProdiva = new javax.swing.JTextField();
+        TxtProdIva = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         TxtProdPrecio = new javax.swing.JTextField();
         TxtProdtotal = new javax.swing.JTextField();
@@ -222,7 +226,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtProdDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TxtProdiva)
+                                .addComponent(TxtProdIva)
                                 .addComponent(TxtProdSubtotal)
                                 .addComponent(TxtProdCantidad)
                                 .addComponent(TxtProdtotal)
@@ -256,7 +260,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(TxtProdiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtProdIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
@@ -286,7 +290,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel23)
@@ -302,7 +305,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                             .addComponent(TxtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TxtSubtotalsinIva, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TxtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
         jPanel2Layout.setVerticalGroup(
@@ -594,34 +598,34 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnGenerarVentaActionPerformed
 
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
+             
+        Detalle_ventas RegDetalleVentas = new Detalle_ventas();
+        RegDetalleVentas.setId_producto(obj.getId_producto());
+        RegDetalleVentas.setNombre_producto(obj.getNombre());
+        RegDetalleVentas.setCantidad(Integer.parseInt(TxtProdCantidad.getText()));
+        RegDetalleVentas.setPrecio(BigDecimal.valueOf(Double.parseDouble(TxtProdPrecio.getText())));
+        RegDetalleVentas.setSubtotal(BigDecimal.valueOf(Double.parseDouble(TxtProdSubtotal.getText())));
+        RegDetalleVentas.setDescuento(BigDecimal.valueOf(Double.parseDouble(TxtProdDescuento.getText())));
+        RegDetalleVentas.setIva(BigDecimal.valueOf(Double.parseDouble(TxtProdIva.getText())));
+        RegDetalleVentas.setTotal(BigDecimal.valueOf(Double.parseDouble(TxtProdtotal.getText())));
 
-//        String nombre = TxtProdtotal.getText();
-//        BigDecimal g = new BigDecimal(nombre);
+        ListarDetalle.add(RegDetalleVentas);
+
+        for (int i = 0; i < ListarDetalle.size(); i++) {
+            System.out.println(ListarDetalle.get(i).getNombre_producto());
+        }
+        Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
 //
-//        ListarDetalleVentas RegDetalleVentas = new ListarDetalleVentas();
-//        RegDetalleVentas.setProducto(TxtProdNombre.getText());
-//        RegDetalleVentas.setDetalle(TxtProdDetalle.getText());
-//        RegDetalleVentas.setCantidad(Integer.parseInt(TxtProdCantidad.getText()));
-//        RegDetalleVentas.setDescuento(Double.parseDouble(TxtProdDescuento.getText()));
-//        RegDetalleVentas.setPvp(Double.parseDouble(TxtProdSubtotal.getText()));
-//        RegDetalleVentas.setIva(TxtProdiva.getText());
-//        RegDetalleVentas.setSubtotal(Double.parseDouble(TxtProdtotal.getText()));
-//
-//        ListarDetalle.add(RegDetalleVentas);
-//
-//        //        for (int i=0; i<ListarDetalle.size(); i++){
-//            //            System.out.println(ListarDetalle.get(i).getProducto()+ ListarDetalle.get(i).getCantidad()+ ListarDetalle.get(i).getSubtotal()+"   " +ListarDetalle.get(i).getDescuento());
-//            //        }
-//        Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
-//
-//        TxtProdNombre.setText("");
-//        TxtProdDetalle.setText("");
-//        TxtProdCantidad.setText("");
-//        TxtProdPrecio.setText("");
-//        TxtProdSubtotal.setText("");
-//        TxtProdDescuento.setText("");
-//        TxtProdiva.setText("");
-//        TxtProdtotal.setText("");
+        
+        TxtProdNombre.setText("");
+        TxtProdPrecio.setText("");
+        TxtProdCantidad.setText("");
+        TxtProdPrecio.setText("");
+        TxtProdSubtotal.setText("");
+        TxtProdDescuento.setText("");
+        TxtProdIva.setText("");
+        TxtProdtotal.setText("");
+        
     }//GEN-LAST:event_BtnAddItenActionPerformed
 
     private void TxtProdCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyTyped
@@ -632,27 +636,56 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtProdCantidadKeyTyped
 
     private void TxtProdCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyReleased
-        String subtotal = "0.00";
+
+        Double iva_valor = 0.12;
+
+        BigDecimal iva = BigDecimal.valueOf(00.00);
+
         if (TxtProdCantidad.equals(" ") == false && TxtProdCantidad.getText().matches("[0-9]+[0-9]*")) {
 
-            Double pvp = Double.parseDouble(TxtProdPrecio.getText().toString());
+            String cant = TxtProdCantidad.getText();
+            BigDecimal cantidad = new BigDecimal(cant);
 
-            Double cantidad = Double.parseDouble(TxtProdCantidad.getText());
+            String pre = TxtProdPrecio.getText();
+            BigDecimal precio = new BigDecimal(pre);
 
-            Double result = (pvp * cantidad);
+            BigDecimal subtotal = cantidad.multiply(precio);
 
-            subtotal = result.toString();
+            TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
+            if (obj.getIva().equals("S")) {
+
+                BigDecimal iva_val = new BigDecimal(iva_valor);
+                iva = iva_val.multiply(subtotal);
+
+                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            }
+
+            if (obj.getIva().equals("N")) {
+
+                iva = BigDecimal.valueOf(00.00);
+
+                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            }
+
+            BigDecimal total = subtotal.add(iva);
+
+            TxtProdtotal.setText(total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
         }
-        TxtProdSubtotal.setText(subtotal);
+
 
     }//GEN-LAST:event_TxtProdCantidadKeyReleased
 
     private void BtnBuscarprodnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarprodnombreActionPerformed
-        this.setVisible(false);
+       // setVisible(false);
         Humtrusa_productos hp = new Humtrusa_productos(new javax.swing.JFrame(), true);
         hp.setVisible(true);
-        
-        
+        obj = hp.getProducto();
+        if (obj != null) {
+            TxtProdNombre.setText(obj.getNombre());
+            TxtProdPrecio.setText(obj.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        }
 
     }//GEN-LAST:event_BtnBuscarprodnombreActionPerformed
 
@@ -755,10 +788,10 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JTextField TxtNumeroOrden;
     public static javax.swing.JTextField TxtProdCantidad;
     private javax.swing.JTextField TxtProdDescuento;
+    private javax.swing.JTextField TxtProdIva;
     public static javax.swing.JTextField TxtProdNombre;
     public static javax.swing.JTextField TxtProdPrecio;
     public static javax.swing.JTextField TxtProdSubtotal;
-    private javax.swing.JTextField TxtProdiva;
     private javax.swing.JTextField TxtProdtotal;
     public static javax.swing.JTextField TxtSubtotal;
     public static javax.swing.JTextField TxtSubtotalconIva;

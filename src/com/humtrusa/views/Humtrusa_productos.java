@@ -41,7 +41,7 @@ public class Humtrusa_productos extends javax.swing.JDialog {
         listapro = crud.ListarTodosProductos(1);
         Tablas.listarTodosProductos(listapro, table);
         llenarComboBoxProductos();
-       
+
     }
 
     public void llenarComboBoxProductos() {
@@ -271,7 +271,7 @@ public class Humtrusa_productos extends javax.swing.JDialog {
     private void jcbMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMedidaActionPerformed
         String valor = jcbMedida.getSelectedItem().toString();
         Long a = null;
-        ArrayList<JoinProductos> listax = Formulario.listarTablaComboMedida(listaMedida,listapro,valor);
+        ArrayList<JoinProductos> listax = Formulario.listarTablaComboMedida(listaMedida, listapro, valor);
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbMedidaActionPerformed
 
@@ -283,12 +283,12 @@ public class Humtrusa_productos extends javax.swing.JDialog {
     public void limpiarTabla() {
         listapro.clear();
         listapro = crud.ListarTodosProductos(1);
-        Tablas.listarTodosProductos(listapro,table);
+        Tablas.listarTodosProductos(listapro, table);
     }
     private void jcbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoActionPerformed
         String valor = jcbTipo.getSelectedItem().toString();
         Long a = null;
-        ArrayList<JoinProductos> listax = Formulario.listarTablaComboTipo(listaTipo,listapro,valor);
+        ArrayList<JoinProductos> listax = Formulario.listarTablaComboTipo(listaTipo, listapro, valor);
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbTipoActionPerformed
 
@@ -300,52 +300,51 @@ public class Humtrusa_productos extends javax.swing.JDialog {
 
     private void tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMousePressed
         int i = 0;
-        
         if (evt.getClickCount() == 2) {
             i = table.getSelectedRow();
             objeto = devuelveObjeto(table.getValueAt(i, 0).toString(), listapro);
             if (objeto != null) {
-                MenuPreVentas mpv = new MenuPreVentas(new javax.swing.JFrame(), true,objeto);
                 this.setVisible(false);
-                mpv.setVisible(true);
-                limpiarTabla();
+               // limpiarTabla();
             }
         }
     }//GEN-LAST:event_tableMousePressed
-
+   public JoinProductos getProducto() {
+        return objeto;
+    }
     private void jcbClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClaseActionPerformed
         String valor = jcbClase.getSelectedItem().toString();
         Long a = null;
-        ArrayList<JoinProductos> listax = Formulario.listarTablaComboClase(listaClase,listapro,valor);
+        ArrayList<JoinProductos> listax = Formulario.listarTablaComboClase(listaClase, listapro, valor);
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbClaseActionPerformed
 
     private void jcbIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIvaActionPerformed
         String valor = jcbIva.getSelectedItem().toString();
         Long a = null;
-        ArrayList<JoinProductos> listax = Formulario.listarTablaComboIVA(listapro,valor);
+        ArrayList<JoinProductos> listax = Formulario.listarTablaComboIVA(listapro, valor);
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbIvaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        productosInactivos ip =new productosInactivos(new javax.swing.JFrame(),true);
+        productosInactivos ip = new productosInactivos(new javax.swing.JFrame(), true);
         this.dispose();
         ip.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int i = 0;
-        
+
         int rowindex = table.getSelectedRow();
-        if ( rowindex > -1) {
+        if (rowindex > -1) {
             i = table.getSelectedRow();
             objeto = devuelveObjeto(table.getValueAt(i, 0).toString(), listapro);
             if (objeto != null) {
-                modificar_productos Man = new modificar_productos(new javax.swing.JFrame(), true,objeto);
+                modificar_productos Man = new modificar_productos(new javax.swing.JFrame(), true, objeto);
                 this.setVisible(false);
                 Man.setVisible(true);
                 limpiarTabla();

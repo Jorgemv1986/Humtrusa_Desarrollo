@@ -16,8 +16,10 @@ public class Detalle_ventas {
     private Long id_detalle_venta;
     private Long id_cabecera_venta;
     private Long id_producto;
-    private BigDecimal precio_venta;
+    private String nombre_producto;
     private int cantidad;
+    private BigDecimal precio;
+    private BigDecimal subtotal;
     private BigDecimal iva;
     private BigDecimal descuento;
     private BigDecimal total;
@@ -25,12 +27,14 @@ public class Detalle_ventas {
     public Detalle_ventas() {
     }
 
-    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long id_producto, BigDecimal precio_venta, int cantidad, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
+    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long id_producto, String nombre_producto, int cantidad, BigDecimal precio, BigDecimal subtotal, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
         this.id_detalle_venta = id_detalle_venta;
         this.id_cabecera_venta = id_cabecera_venta;
         this.id_producto = id_producto;
-        this.precio_venta = precio_venta;
+        this.nombre_producto = nombre_producto;
         this.cantidad = cantidad;
+        this.precio = precio;
+        this.subtotal = subtotal;
         this.iva = iva;
         this.descuento = descuento;
         this.total = total;
@@ -60,12 +64,12 @@ public class Detalle_ventas {
         this.id_producto = id_producto;
     }
 
-    public BigDecimal getPrecio_venta() {
-        return precio_venta;
+    public String getNombre_producto() {
+        return nombre_producto;
     }
 
-    public void setPrecio_venta(BigDecimal precio_venta) {
-        this.precio_venta = precio_venta;
+    public void setNombre_producto(String nombre_producto) {
+        this.nombre_producto = nombre_producto;
     }
 
     public int getCantidad() {
@@ -74,6 +78,22 @@ public class Detalle_ventas {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public BigDecimal getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
     }
 
     public BigDecimal getIva() {
@@ -99,9 +119,5 @@ public class Detalle_ventas {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
-
-    
-    
-
     
 }
