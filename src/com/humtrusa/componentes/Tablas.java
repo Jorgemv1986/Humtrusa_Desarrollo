@@ -8,6 +8,7 @@ package com.humtrusa.componentes;
 //import com.objetos.domain.Laboratorio;
 import com.humtrusa.entidades.Detalle_ventas;
 import com.humtrusa.entidades.JoinProductos;
+import com.humtrusa.entidades.Usuario;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -188,5 +189,31 @@ public class Tablas {
 
     }
     
-    
+    public static void listarUsuario (ArrayList<Usuario> lista, JTable Tabla) {        
+        model = Tablas.VaciarTabla(Tabla);
+        int[] a = { 150, 190, 190, 150, 80, 110, 110};
+            model.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRES", "APELLIDOS", "TELEFONO", "DIRECCION", "CORREO", "TIPO USUARIO"});
+        
+        try {
+            for(Usuario rs:lista) {
+                // añade los resultado a al modelo de tabla
+                model.addRow(new Object[]{rs.getCedula(), rs.getNombres(),rs.getApellidos(),rs.getTelefono(),rs.getDireccion(),
+                rs.getCorreo(),rs.getTipo_usuario()});
+            }            
+            // asigna el modelo a la tabla
+          
+           Tabla.setModel(model);  
+           Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+           Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+           Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+           Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+           Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+           Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+           Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+          
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
 }

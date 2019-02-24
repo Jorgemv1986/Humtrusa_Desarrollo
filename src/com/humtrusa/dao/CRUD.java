@@ -11,6 +11,7 @@ import com.humtrusa.entidades.Clase_producto;
 import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Medidas_producto;
 import com.humtrusa.entidades.Tipo_producto;
+import com.humtrusa.entidades.Usuario;
 import java.math.BigInteger;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -272,8 +273,142 @@ public class CRUD {
             }
         }
     }
+//    ingresoUsuario
+    public String ingresoUsuario(Usuario u){
+        String valor="";
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call ingresoUsuario(?,?,?,?,?,?,?,?,?) }");
+            proced.setString(1, u.getCedula());
+            proced.setString(2, u.getNombres());
+            proced.setString(3, u.getApellidos());
+            proced.setString(4, u.getTelefono());
+            proced.setString(5, u.getDireccion());
+            proced.setString(6, u.getCorreo());
+            proced.setString(7, u.getContrasena());
+            proced.setString(8, u.getTipo_usuario());
+            proced.registerOutParameter("valor", Types.VARCHAR);
+            proced.executeUpdate();
+            valor = proced.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public String updateUsuario(Usuario u){
+        String valor="";
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call modificarUsuario(?,?,?,?,?,?,?,?,?,?) }");
+            proced.setString(1, u.getCedula());
+            proced.setString(2, u.getNombres());
+            proced.setString(3, u.getApellidos());
+            proced.setString(4, u.getTelefono());
+            proced.setString(5, u.getDireccion());
+            proced.setString(6, u.getCorreo());
+            proced.setString(7, u.getContrasena());
+            proced.setString(8, u.getTipo_usuario());
+            proced.setLong(9, u.getId());
+            proced.registerOutParameter("valor", Types.VARCHAR);
+            proced.executeUpdate();
+            valor = proced.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public ArrayList<Usuario> ListarTodoUsuario(int op) {
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call listarUsuario(?) }");
+            proced.setInt(1, op);
+            proced.execute();
+            rs = proced.getResultSet();
+            while (rs.next()) {
+                Usuario obj = EntidadesMappers.getTodoUsuario(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+      
 //    
-//    }
+    public void inactivarUsuario(int op,Long idUsu){
+        String valor="";
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call inactivarUsuario(?,?) }");
+            proced.setLong(1, op);
+            proced.setLong(2, idUsu);
+            proced.executeUpdate();
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
 //
 //    public ArrayList<joinProductoDetallesFaltantes> listarFaltantesDetalles(int op) {
 //        ArrayList<joinProductoDetallesFaltantes> lista = new ArrayList<joinProductoDetallesFaltantes>();

@@ -9,6 +9,7 @@ import com.humtrusa.entidades.Clase_producto;
 import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Medidas_producto;
 import com.humtrusa.entidades.Tipo_producto;
+import com.humtrusa.entidades.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -86,4 +87,25 @@ public class EntidadesMappers {
         }
         return obj;
     }
+  
+    public static Usuario getTodoUsuario(ResultSet rs) {
+        Usuario obj = new Usuario();
+        try {
+            obj.setId(rs.getLong("ID"));
+            obj.setCedula(rs.getString("CEDULA"));
+            obj.setNombres(rs.getString("NOMBRES"));
+            obj.setApellidos(rs.getString("APELLIDOS"));
+            obj.setTelefono(rs.getString("TELEFONO"));
+            obj.setDireccion(rs.getString("DIRECCION"));
+            obj.setCorreo(rs.getString("CORREO"));
+            obj.setContrasena(rs.getString("CONTRASENA"));
+            obj.setTipo_usuario(rs.getString("TIPO_USUARIO"));
+            obj.setEstado(rs.getString("ESTADO"));
+                     
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }        
 }
