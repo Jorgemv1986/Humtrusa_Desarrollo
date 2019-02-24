@@ -5,6 +5,7 @@
  */
 package com.humtrusa.views;
 
+import com.humtrusa.views.productos.Humtrusa_productos;
 import com.humtrusa.componentes.Tablas;
 import com.humtrusa.dao.CRUD;
 import com.humtrusa.entidades.Detalle_ventas;

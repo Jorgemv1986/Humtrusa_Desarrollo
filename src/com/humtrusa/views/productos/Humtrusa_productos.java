@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.humtrusa.views;
+package com.humtrusa.views.productos;
 
 import com.humtrusa.componentes.Formulario;
 import com.humtrusa.componentes.Tablas;

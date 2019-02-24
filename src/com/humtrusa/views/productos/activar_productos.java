@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.humtrusa.views;
+package com.humtrusa.views.productos;
 
+import com.humtrusa.views.productos.productosInactivos;
+import com.humtrusa.views.productos.Humtrusa_productos;
 import com.humtrusa.componentes.Formulario;
 import com.humtrusa.dao.CRUD;
 import com.humtrusa.entidades.Clase_producto;
