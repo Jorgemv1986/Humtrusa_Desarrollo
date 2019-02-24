@@ -9,6 +9,7 @@ import com.humtrusa.componentes.Tablas;
 import com.humtrusa.dao.CRUD;
 import com.humtrusa.entidades.Detalle_ventas;
 import com.humtrusa.entidades.JoinProductos;
+import com.humtrusa.entidades.Usuario;
 import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.event.ActionEvent;
@@ -541,11 +542,16 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
 
     private void BtnBuscarcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarcedulaActionPerformed
-
-//        ConsultarClienteVentas cpv = new ConsultarClienteVentas(new javax.swing.JFrame(), true);
-//        cpv.setVisible(true);
+    elegir_usuarios eu = new elegir_usuarios(new javax.swing.JFrame(),true);
+    eu.setVisible(true);
+        Usuario u =  eu.getUsuario();
+    TxtCedula.setText(u.getCedula());
+    TxtNombre.setText(u.getNombres()+" "+u.getApellidos());
+    TxtDirec.setText(u.getDireccion());
+    TxtTelefono.setText(u.getTelefono());
+    TxtCorreo.setText(u.getCorreo());
     }//GEN-LAST:event_BtnBuscarcedulaActionPerformed
-
+    
     private void BtnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVentaActionPerformed
 
 ////        Cabecera_ventas cv = new Cabecera_ventas();
