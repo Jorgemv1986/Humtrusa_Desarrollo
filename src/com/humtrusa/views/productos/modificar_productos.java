@@ -5,6 +5,7 @@
  */
 package com.humtrusa.views.productos;
 
+import com.humtrusa.views.elegirProductos;
 import com.humtrusa.componentes.Formulario;
 import com.humtrusa.dao.CRUD;
 import com.humtrusa.entidades.Clase_producto;
@@ -422,7 +423,7 @@ public class modificar_productos extends javax.swing.JDialog {
 
     public void llamarHumtrusaProductos() {
         this.dispose();
-        Humtrusa_productos hp = new Humtrusa_productos(new javax.swing.JFrame(), true);
+        elegirProductos hp = new elegirProductos(new javax.swing.JFrame(), true);
         hp.setVisible(true);
     }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

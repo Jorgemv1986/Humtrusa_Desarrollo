@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.humtrusa.views.productos;
+package com.humtrusa.views;
 
 import com.humtrusa.componentes.Formulario;
 import com.humtrusa.componentes.Tablas;
@@ -13,9 +13,13 @@ import com.humtrusa.entidades.Clase_producto;
 import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Medidas_producto;
 import com.humtrusa.entidades.Tipo_producto;
+import com.humtrusa.views.productos.Ingreso_Productos;
+import com.humtrusa.views.productos.modificar_productos;
+import com.humtrusa.views.productos.productosInactivos;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 ;
@@ -24,7 +28,7 @@ import javax.swing.JScrollPane;
  *
  * @author usuario
  */
-public class Humtrusa_productos extends javax.swing.JDialog {
+public class elegirProductos extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
     ArrayList<JoinProductos> listapro = null;
@@ -33,15 +37,16 @@ public class Humtrusa_productos extends javax.swing.JDialog {
     ArrayList<Medidas_producto> listaMedida = null;
     JoinProductos objeto = new JoinProductos();
     String buscar = "";
+    int pos = 0;
 
-    public Humtrusa_productos(java.awt.Frame parent, boolean modal) {
+    public elegirProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         listapro = crud.ListarTodosProductos(1);
         Tablas.listarTodosProductos(listapro, table);
         llenarComboBoxProductos();
-       
+
     }
 
     public void llenarComboBoxProductos() {
@@ -80,6 +85,9 @@ public class Humtrusa_productos extends javax.swing.JDialog {
         table = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        cbxtipoClient = new javax.swing.JComboBox<>();
 
         jButton1.setText("jButton1");
 
@@ -169,19 +177,28 @@ public class Humtrusa_productos extends javax.swing.JDialog {
             }
         });
 
+        jButton5.setText("MODIFICAR PRODUCTOS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("PRECIO DEL CLIENTE");
+
+        cbxtipoClient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "PRECIO A", "PRECIO B", "PRECIO C" }));
+        cbxtipoClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxtipoClientActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -198,17 +215,31 @@ public class Humtrusa_productos extends javax.swing.JDialog {
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcbMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jcbTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(77, 77, 77)
+                        .addComponent(cbxtipoClient, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(73, 73, 73))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,13 +249,12 @@ public class Humtrusa_productos extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel5))
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jButton2)))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jcbIva)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -236,9 +266,15 @@ public class Humtrusa_productos extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jcbClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jcbTipo)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcbTipo)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbxtipoClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,7 +286,9 @@ public class Humtrusa_productos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
@@ -260,7 +298,7 @@ public class Humtrusa_productos extends javax.swing.JDialog {
     private void jcbMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMedidaActionPerformed
         String valor = jcbMedida.getSelectedItem().toString();
         Long a = null;
-        ArrayList<JoinProductos> listax = Formulario.listarTablaComboMedida(listaMedida,listapro,valor);
+        ArrayList<JoinProductos> listax = Formulario.listarTablaComboMedida(listaMedida, listapro, valor);
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbMedidaActionPerformed
 
@@ -272,12 +310,12 @@ public class Humtrusa_productos extends javax.swing.JDialog {
     public void limpiarTabla() {
         listapro.clear();
         listapro = crud.ListarTodosProductos(1);
-        Tablas.listarTodosProductos(listapro,table);
+        Tablas.listarTodosProductos(listapro, table);
     }
     private void jcbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoActionPerformed
         String valor = jcbTipo.getSelectedItem().toString();
         Long a = null;
-        ArrayList<JoinProductos> listax = Formulario.listarTablaComboTipo(listaTipo,listapro,valor);
+        ArrayList<JoinProductos> listax = Formulario.listarTablaComboTipo(listaTipo, listapro, valor);
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbTipoActionPerformed
 
@@ -289,42 +327,71 @@ public class Humtrusa_productos extends javax.swing.JDialog {
 
     private void tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMousePressed
         int i = 0;
-        
         if (evt.getClickCount() == 2) {
-            i = table.getSelectedRow();
-            objeto = devuelveObjeto(table.getValueAt(i, 0).toString(), listapro);
-            if (objeto != null) {
-                modificar_productos Man = new modificar_productos(new javax.swing.JFrame(), true,objeto);
-                this.setVisible(false);
-                Man.setVisible(true);
-                limpiarTabla();
+            if (pos == 0) {
+                JOptionPane.showMessageDialog(this, "ESCOJA EL PRECIO DEL CLIENTE");
+            } else {
+                i = table.getSelectedRow();
+                objeto = devuelveObjeto(table.getValueAt(i, 0).toString(), listapro);
+                if (objeto != null) {
+                    this.setVisible(false);
+                    // limpiarTabla();
+                }
             }
         }
-    }//GEN-LAST:event_tableMousePressed
 
+    }//GEN-LAST:event_tableMousePressed
+    public JoinProductos getProducto() {
+        return objeto;
+    }
+
+    public int getPos() {
+        return pos;
+    }
     private void jcbClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClaseActionPerformed
         String valor = jcbClase.getSelectedItem().toString();
         Long a = null;
-        ArrayList<JoinProductos> listax = Formulario.listarTablaComboClase(listaClase,listapro,valor);
+        ArrayList<JoinProductos> listax = Formulario.listarTablaComboClase(listaClase, listapro, valor);
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbClaseActionPerformed
 
     private void jcbIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIvaActionPerformed
         String valor = jcbIva.getSelectedItem().toString();
         Long a = null;
-        ArrayList<JoinProductos> listax = Formulario.listarTablaComboIVA(listapro,valor);
+        ArrayList<JoinProductos> listax = Formulario.listarTablaComboIVA(listapro, valor);
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbIvaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        productosInactivos ip =new productosInactivos(new javax.swing.JFrame(),true);
+        productosInactivos ip = new productosInactivos(new javax.swing.JFrame(), true);
         this.dispose();
         ip.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int i = 0;
+
+        int rowindex = table.getSelectedRow();
+        if (rowindex > -1) {
+            i = table.getSelectedRow();
+            objeto = devuelveObjeto(table.getValueAt(i, 0).toString(), listapro);
+            if (objeto != null) {
+                modificar_productos Man = new modificar_productos(new javax.swing.JFrame(), true, objeto);
+                this.setVisible(false);
+                Man.setVisible(true);
+                limpiarTabla();
+            }
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cbxtipoClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxtipoClientActionPerformed
+        pos = cbxtipoClient.getSelectedIndex();
+        System.out.println(pos);
+    }//GEN-LAST:event_cbxtipoClientActionPerformed
 
     public JoinProductos devuelveObjeto(String datos, ArrayList<JoinProductos> listarobj) {
         JoinProductos objeto1 = null;
@@ -332,6 +399,17 @@ public class Humtrusa_productos extends javax.swing.JDialog {
             if (datos.equals(listarobj.get(i).getId_producto().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
+            }
+        }
+        return objeto1;
+    }
+
+    public JoinProductos devuelveObjeto2(String datos, ArrayList<JoinProductos> listarobj, int pos) {
+        JoinProductos objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+                objeto1 = listarobj.get(i);
+
             }
         }
         return objeto1;
@@ -354,13 +432,13 @@ public class Humtrusa_productos extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Humtrusa_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(elegirProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Humtrusa_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(elegirProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Humtrusa_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(elegirProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Humtrusa_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(elegirProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -368,7 +446,7 @@ public class Humtrusa_productos extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Humtrusa_productos dialog = new Humtrusa_productos(new javax.swing.JFrame(), true);
+                elegirProductos dialog = new elegirProductos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -381,15 +459,18 @@ public class Humtrusa_productos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbxtipoClient;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbClase;
     private javax.swing.JComboBox<String> jcbIva;

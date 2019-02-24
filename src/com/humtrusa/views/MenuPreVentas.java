@@ -5,7 +5,6 @@
  */
 package com.humtrusa.views;
 
-import com.humtrusa.views.productos.Humtrusa_productos;
 import com.humtrusa.componentes.Tablas;
 import com.humtrusa.dao.CRUD;
 import com.humtrusa.entidades.Detalle_ventas;
@@ -31,8 +30,7 @@ import javax.swing.JFrame;
  */
 public class MenuPreVentas extends javax.swing.JDialog {
 
-    
-    ArrayList<Detalle_ventas> ListarDetalle=new ArrayList<Detalle_ventas>();
+    ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
     CRUD crud = new CRUD();
     JoinProductos obj = new JoinProductos();
 
@@ -40,7 +38,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        
 
     }
 
@@ -49,17 +46,15 @@ public class MenuPreVentas extends javax.swing.JDialog {
 //        initComponents();
 //        this.setLocationRelativeTo(null);
 //        llenarFormulario();
-   //  ListarDetalle = new ArrayList<Detalle_ventas>();
+    //  ListarDetalle = new ArrayList<Detalle_ventas>();
 //        this.setLocationRelativeTo(null);
 //        this.setResizable(false);
 //        TxtFecha.setText(FechaActual());
 //    }
-
 //    public  void llenarFormulario() {
 //        TxtProdNombre.setText(obj.getNombre());
 //        TxtProdPrecio.setText(obj.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -599,7 +594,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnGenerarVentaActionPerformed
 
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
-             
+
         Detalle_ventas RegDetalleVentas = new Detalle_ventas();
         RegDetalleVentas.setId_producto(obj.getId_producto());
         RegDetalleVentas.setNombre_producto(obj.getNombre());
@@ -617,7 +612,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
         Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
 //
-        
+
         TxtProdNombre.setText("");
         TxtProdPrecio.setText("");
         TxtProdCantidad.setText("");
@@ -626,7 +621,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setText("");
         TxtProdIva.setText("");
         TxtProdtotal.setText("");
-        
+
     }//GEN-LAST:event_BtnAddItenActionPerformed
 
     private void TxtProdCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyTyped
@@ -679,13 +674,30 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtProdCantidadKeyReleased
 
     private void BtnBuscarprodnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarprodnombreActionPerformed
-       // setVisible(false);
-        Humtrusa_productos hp = new Humtrusa_productos(new javax.swing.JFrame(), true);
+        // setVisible(false);
+        elegirProductos hp = new elegirProductos(new javax.swing.JFrame(), true);
         hp.setVisible(true);
         obj = hp.getProducto();
         if (obj != null) {
-            TxtProdNombre.setText(obj.getNombre());
-            TxtProdPrecio.setText(obj.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            switch (hp.getPos()) {
+                case 1:
+                    TxtProdNombre.setText(obj.getNombre());
+                    TxtProdPrecio.setText(obj.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    break;
+                case 2:
+                    TxtProdNombre.setText(obj.getNombre());
+                    TxtProdPrecio.setText(obj.getPrecio_Vent_B().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    break;
+                case 3:
+                    TxtProdNombre.setText(obj.getNombre());
+                    TxtProdPrecio.setText(obj.getPrecio_Vent_C().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    break;
+
+                default:
+                    System.out.println("error desconocido");
+                    break;
+            }
+
         }
 
     }//GEN-LAST:event_BtnBuscarprodnombreActionPerformed
