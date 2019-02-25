@@ -143,6 +143,7 @@ public class Agregar_Clase_producto extends javax.swing.JDialog {
 
     private void txtClaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaseKeyTyped
         txtClase.setText(txtClase.getText().toUpperCase());
+ 
     }//GEN-LAST:event_txtClaseKeyTyped
 
     /**
