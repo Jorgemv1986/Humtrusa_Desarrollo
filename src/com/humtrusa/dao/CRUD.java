@@ -408,8 +408,96 @@ public class CRUD {
             }
         }
     }
-    
-//
+    public String agregarComponenteClase(int op,Clase_producto u){
+        String valor="";
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call agregarComponenteProducto(?,?,?) }");
+            proced.setInt(1, op);
+            proced.setString(2, u.getNombre_clase());         
+            proced.registerOutParameter("valor", Types.VARCHAR);
+            proced.executeUpdate();
+            valor = proced.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public String agregarComponenteTipo(int op,Tipo_producto u){
+        String valor="";
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call agregarComponenteProducto(?,?,?) }");
+            proced.setInt(1, op);
+            proced.setString(2, u.getNombre_tipo());         
+            proced.registerOutParameter("valor", Types.VARCHAR);
+            proced.executeUpdate();
+            valor = proced.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public String agregarComponenteMedida(int op,Medidas_producto u){
+        String valor="";
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call agregarComponenteProducto(?,?,?) }");
+            proced.setInt(1, op);
+            proced.setString(2, u.getNombre_medida());         
+            proced.registerOutParameter("valor", Types.VARCHAR);
+            proced.executeUpdate();
+            valor = proced.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
 //    public ArrayList<joinProductoDetallesFaltantes> listarFaltantesDetalles(int op) {
 //        ArrayList<joinProductoDetallesFaltantes> lista = new ArrayList<joinProductoDetallesFaltantes>();
 //
