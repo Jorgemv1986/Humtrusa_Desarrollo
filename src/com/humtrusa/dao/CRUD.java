@@ -7,7 +7,9 @@ package com.humtrusa.dao;
 
 
 import com.humtrusa.Mappers.EntidadesMappers;
+import com.humtrusa.entidades.Cabecera_ventas;
 import com.humtrusa.entidades.Clase_producto;
+import com.humtrusa.entidades.Detalle_ventas;
 import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Medidas_producto;
 import com.humtrusa.entidades.Tipo_producto;
@@ -481,6 +483,86 @@ public class CRUD {
             proced.registerOutParameter("valor", Types.VARCHAR);
             proced.executeUpdate();
             valor = proced.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
+    public String InsertarCabeceraVentas(Cabecera_ventas obj) {
+
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call InsertarCabeceraVentas(?,?,?,?,?,?,?,?,?,?,?) }");
+            prodProAlm.setString(1, obj.getMun_venta());
+            prodProAlm.setLong(2, obj.getId_cliente());
+            prodProAlm.setLong(3, obj.getId_empresa());
+            prodProAlm.setString(4, obj.getForma_de_pago());
+            prodProAlm.setString(5, obj.getTipo_de_venta());
+            prodProAlm.setBigDecimal(6, obj.getSubtotal_con_iva());
+            prodProAlm.setBigDecimal(7, obj.getSubtotal_sin_iva());
+            prodProAlm.setBigDecimal(8, obj.getIva_venta());
+            prodProAlm.setBigDecimal(9, obj.getDescuento_venta());
+            prodProAlm.setBigDecimal(10, obj.getTotal_venta());
+
+
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    ////////// insertar detalle ventas
+    public String InsertarDetalleVentas(Detalle_ventas obj) {
+
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call InsertarCabeceraVentas(?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_cabecera_venta());
+            prodProAlm.setLong(2, obj.getId_producto());
+            prodProAlm.setBigDecimal(3, obj.getPrecio());
+            prodProAlm.setLong(4, obj.getCantidad());
+            prodProAlm.setBigDecimal(5, obj.getIva());
+            prodProAlm.setBigDecimal(6, obj.getDescuento());
+            
+
+
+
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
             conect.commit();
         } catch (Exception e) {
             try {

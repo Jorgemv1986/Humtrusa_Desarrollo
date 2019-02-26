@@ -7,6 +7,8 @@ package com.humtrusa.views;
 
 import com.humtrusa.componentes.Tablas;
 import com.humtrusa.dao.CRUD;
+import com.humtrusa.entidades.Cabecera_ventas;
+import com.humtrusa.entidades.Calcular_totales;
 import com.humtrusa.entidades.Detalle_ventas;
 import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Usuario;
@@ -34,6 +36,10 @@ public class MenuPreVentas extends javax.swing.JDialog {
     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
     CRUD crud = new CRUD();
     JoinProductos obj = new JoinProductos();
+    Calcular_totales ct = new Calcular_totales();
+    Usuario u = new Usuario();
+    
+    
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -449,9 +455,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CbxFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxTipoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CbxTipoVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CbxFormaPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
@@ -462,7 +468,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 427, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtNumeroOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -552,56 +558,55 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private void BtnBuscarcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarcedulaActionPerformed
         elegir_usuarios eu = new elegir_usuarios(new javax.swing.JFrame(), true);
         eu.setVisible(true);
-        Usuario u = eu.getUsuario();
+        u = eu.getUsuario();
         TxtCedula.setText(u.getCedula());
         TxtNombre.setText(u.getNombres() + " " + u.getApellidos());
         TxtDirec.setText(u.getDireccion());
         TxtTelefono.setText(u.getTelefono());
         TxtCorreo.setText(u.getCorreo());
+       
     }//GEN-LAST:event_BtnBuscarcedulaActionPerformed
 
     private void BtnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVentaActionPerformed
 
-////        Cabecera_ventas cv = new Cabecera_ventas();
-////        String id_cab = "";
-////        
-////        cv.setId_cliente(Long.valueOf("1"));
-////        cv.setId_usuario(Long.valueOf("1"));
-////        cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
-////        cv.setSubtotal_con_iva(BigDecimal.valueOf(Double.parseDouble(TxtSubtotalconIva.getText())));
-////        cv.setSubtotal_sin_iva(BigDecimal.valueOf(Double.parseDouble(TxtSubtotalsinIva.getText())));
-////        cv.setSubtotal_venta(BigDecimal.valueOf(Double.parseDouble(TxtSubtotal.getText())));
-////        cv.setDescuento_venta(BigDecimal.valueOf(Double.parseDouble(TxtDescuento.getText())));
-////        cv.setIva_venta(BigDecimal.valueOf(Double.parseDouble(TxtIva.getText())));
-////        cv.setTotal_venta(BigDecimal.valueOf(Double.parseDouble(TxtTotal.getText())));
-////        cv.setUtilidad(BigDecimal.valueOf(Double.valueOf(10)));
-////        
-////  
-////        id_cab = crud.InsertarCabeceraVentas(cv);
-////        cv.setId_cabecera_venta(Long.parseLong(id_cab));
-////        
-////        
-//////        Detalle_ventas dv = new Detalle_ventas ();
-//////        String id_det = "";
-////        //for (int i=0; i<TablaListarVentas.getRowCount(); i++){
-////        //dv.setId_cabecera_venta(TablaListarVentas.getColumn());
-////        
-////        for (int i=0; i<ListarDetalle.size(); i++){
-//////        dv.setId_precio(Long.MIN_VALUE);
-//////        dv.setCantidad(WIDTH);
-//////        dv.setPrecio_venta(BigDecimal.ZERO);
-//////        dv.setDescuento_venta(BigDecimal.TEN);
-//////        dv.setIva_venta(BigDecimal.TEN);
+        Cabecera_ventas cv = new Cabecera_ventas();
+        String id_cab = "";
+
+        cv.setMun_venta("0000006");
+        cv.setId_cliente(u.getId());
+        cv.setId_empresa(Long.parseLong("1"));
+        cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
+        cv.setTipo_de_venta(CbxTipoVenta.getSelectedItem().toString());
+        cv.setSubtotal_con_iva(ct.getSubtotalConIva());
+        cv.setSubtotal_sin_iva(ct.getSubtotalSinIva());
+        cv.setSubtotal_venta(ct.getSubtotal());
+        cv.setDescuento_venta(ct.getDescuento());
+        cv.setIva_venta(ct.getIva());
+        cv.setTotal_venta(ct.getTotal());
+        
+
+        id_cab = crud.InsertarCabeceraVentas(cv);
+        cv.setId_cabecera_venta(Long.parseLong(id_cab));
+
+//        Detalle_ventas dv = new Detalle_ventas ();
+        String id_det = "";
+
+//        for (int i=0; i<ListarDetalle.size(); i++){
+//        dv.setId_precio(Long.MIN_VALUE);
+//        dv.setCantidad(WIDTH);
+//        dv.setPrecio_venta(BigDecimal.ZERO);
+//        dv.setDescuento_venta(BigDecimal.TEN);
+//        dv.setIva_venta(BigDecimal.TEN);
+//        
+//        id_det = crud.InsertarDetalleVentas(dv);
+//        dv.setId_detalle_venta(Long.MIN_VALUE);
+//        
+//        System.out.println(ListarDetalle.get(i).getProducto()+ ListarDetalle.get(i).getCantidad()+ ListarDetalle.get(i).getSubtotal()+"   " +ListarDetalle.get(i).getDescuento());
+//        }
 //////        
-//////        id_det = crud.InsertarDetalleVentas(dv);
-//////        dv.setId_detalle_venta(Long.MIN_VALUE);
-////        
-////        System.out.println(ListarDetalle.get(i).getProducto()+ ListarDetalle.get(i).getCantidad()+ ListarDetalle.get(i).getSubtotal()+"   " +ListarDetalle.get(i).getDescuento());
-////        }
 ////        
 ////        
-////        
-////        System.out.println(""+ id_cab);
+        System.out.println(""+ id_cab);
 ////        
 ////
 ////
@@ -693,7 +698,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         BigDecimal TotalIva = new BigDecimal("0.00");
         BigDecimal TotalDescuento = new BigDecimal("0.00");
         BigDecimal Total = new BigDecimal("0.00");
-        
+
 
         for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
 
@@ -709,31 +714,37 @@ public class MenuPreVentas extends javax.swing.JDialog {
             TotalDescuento = TotalDescuento.add(Descuento);
 
             if ("0.0".equals(ListarDetalle.get(i).getIva().toEngineeringString())) {
-               
+
                 System.out.println("sin_iva " + Iva);
                 TotalSubSinIva = TotalSubSinIva.add(Subtotal);
                 TxtSubtotalsinIva.setText(TotalSubSinIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 
             }
             if (!"0.0".equals(ListarDetalle.get(i).getIva().toEngineeringString())) {
-                
+
                 System.out.println("con_iva " + Iva);
                 TotalIva = TotalIva.add(Iva);
                 TotalSubConIva = TotalSubConIva.add(Subtotal);
                 TxtSubtotalconIva.setText(TotalSubConIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             }
-            
+
             Total = Total.add(Subtotal.subtract(Descuento).add(Iva));
             
-
         }
-       
+
         TotalSubTotal = TotalSubConIva.add(TotalSubSinIva);
+
+        ct.setSubtotalConIva(TotalSubConIva);
+        ct.setSubtotalSinIva(TotalSubSinIva);
+        ct.setSubtotal(TotalSubTotal);
+        ct.setIva(Total);
+        ct.setDescuento(TotalDescuento);
+        ct.setTotal(Total);
         TxtSubtotal.setText(TotalSubTotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         TxtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         TxtDescuento.setText(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        
+        System.out.println(" id_ usuario " +  u.getId());
     }
 
     private void BtnBuscarprodnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarprodnombreActionPerformed
