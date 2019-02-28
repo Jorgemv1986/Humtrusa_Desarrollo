@@ -5,7 +5,6 @@
  */
 package com.humtrusa.dao;
 
-
 import com.humtrusa.Mappers.EntidadesMappers;
 import com.humtrusa.entidades.Cabecera_ventas;
 import com.humtrusa.entidades.Clase_producto;
@@ -37,7 +36,7 @@ public class CRUD {
     Conexion con = new Conexion();
 
     String query;
-    
+
     public ArrayList<JoinProductos> ListarTodosProductos(int op) {
         ArrayList<JoinProductos> lista = new ArrayList<JoinProductos>();
 
@@ -70,6 +69,7 @@ public class CRUD {
         }
         return lista;
     }
+
     public ArrayList<Clase_producto> listarComboClase(int op) {
         ArrayList<Clase_producto> lista = new ArrayList<Clase_producto>();
 
@@ -102,6 +102,7 @@ public class CRUD {
         }
         return lista;
     }
+
     public ArrayList<Tipo_producto> listarComboTipo(int op) {
         ArrayList<Tipo_producto> lista = new ArrayList<Tipo_producto>();
 
@@ -134,7 +135,8 @@ public class CRUD {
         }
         return lista;
     }
-     public ArrayList<Medidas_producto> listarComboMedida(int op) {
+
+    public ArrayList<Medidas_producto> listarComboMedida(int op) {
         ArrayList<Medidas_producto> lista = new ArrayList<Medidas_producto>();
 
         try {
@@ -166,9 +168,9 @@ public class CRUD {
         }
         return lista;
     }
-     
-      public String  modificarProductos(JoinProductos obj){
-        String valor="";
+
+    public String modificarProductos(JoinProductos obj) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -190,7 +192,7 @@ public class CRUD {
             proced.registerOutParameter("valor", Types.VARCHAR);
             proced.executeUpdate();
             valor = proced.getString("valor");
-           
+
             conect.commit();
         } catch (Exception e) {
             try {
@@ -208,8 +210,9 @@ public class CRUD {
         }
         return valor;
     }
-      public String ingresoProductos(JoinProductos obj){
-        String valor="";
+
+    public String ingresoProductos(JoinProductos obj) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -230,7 +233,7 @@ public class CRUD {
             proced.registerOutParameter("valor", Types.VARCHAR);
             proced.executeUpdate();
             valor = proced.getString("valor");
-           
+
             conect.commit();
         } catch (Exception e) {
             try {
@@ -248,8 +251,9 @@ public class CRUD {
         }
         return valor;
     }
-      public void inactivarProducto(int op,Long idPro){
-        String valor="";
+
+    public void inactivarProducto(int op, Long idPro) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -276,8 +280,9 @@ public class CRUD {
         }
     }
 //    ingresoUsuario
-    public String ingresoUsuario(Usuario u){
-        String valor="";
+
+    public String ingresoUsuario(Usuario u) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -312,8 +317,9 @@ public class CRUD {
         }
         return valor;
     }
-    public String updateUsuario(Usuario u){
-        String valor="";
+
+    public String updateUsuario(Usuario u) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -349,6 +355,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public ArrayList<Usuario> ListarTodoUsuario(int op) {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
 
@@ -381,10 +388,10 @@ public class CRUD {
         }
         return lista;
     }
-      
+
 //    
-    public void inactivarUsuario(int op,Long idUsu){
-        String valor="";
+    public void inactivarUsuario(int op, Long idUsu) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -410,8 +417,9 @@ public class CRUD {
             }
         }
     }
-    public String agregarComponenteClase(int op,Clase_producto u){
-        String valor="";
+
+    public String agregarComponenteClase(int op, Clase_producto u) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -419,7 +427,7 @@ public class CRUD {
             CallableStatement proced = conect.prepareCall(
                     "{ call agregarComponenteProducto(?,?,?) }");
             proced.setInt(1, op);
-            proced.setString(2, u.getNombre_clase());         
+            proced.setString(2, u.getNombre_clase());
             proced.registerOutParameter("valor", Types.VARCHAR);
             proced.executeUpdate();
             valor = proced.getString("valor");
@@ -440,8 +448,9 @@ public class CRUD {
         }
         return valor;
     }
-    public String agregarComponenteTipo(int op,Tipo_producto u){
-        String valor="";
+
+    public String agregarComponenteTipo(int op, Tipo_producto u) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -449,7 +458,7 @@ public class CRUD {
             CallableStatement proced = conect.prepareCall(
                     "{ call agregarComponenteProducto(?,?,?) }");
             proced.setInt(1, op);
-            proced.setString(2, u.getNombre_tipo());         
+            proced.setString(2, u.getNombre_tipo());
             proced.registerOutParameter("valor", Types.VARCHAR);
             proced.executeUpdate();
             valor = proced.getString("valor");
@@ -470,8 +479,9 @@ public class CRUD {
         }
         return valor;
     }
-    public String agregarComponenteMedida(int op,Medidas_producto u){
-        String valor="";
+
+    public String agregarComponenteMedida(int op, Medidas_producto u) {
+        String valor = "";
 
         try {
             conect = con.conectar();
@@ -479,7 +489,7 @@ public class CRUD {
             CallableStatement proced = conect.prepareCall(
                     "{ call agregarComponenteProducto(?,?,?) }");
             proced.setInt(1, op);
-            proced.setString(2, u.getNombre_medida());         
+            proced.setString(2, u.getNombre_medida());
             proced.registerOutParameter("valor", Types.VARCHAR);
             proced.executeUpdate();
             valor = proced.getString("valor");
@@ -500,7 +510,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public String InsertarCabeceraVentas(Cabecera_ventas obj) {
 
         String valor = "";
@@ -520,6 +530,42 @@ public class CRUD {
             prodProAlm.setBigDecimal(9, obj.getDescuento_venta());
             prodProAlm.setBigDecimal(10, obj.getTotal_venta());
 
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
+    ////////// insertar detalle ventas
+    public String InsertarDetalleVentas(Detalle_ventas obj) {
+
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call InsertarDetalleVentas(?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_cabecera_venta());
+            prodProAlm.setLong(2, obj.getId_producto());
+            prodProAlm.setBigDecimal(3, obj.getPrecio());
+            prodProAlm.setLong(4, obj.getCantidad());
+            prodProAlm.setBigDecimal(5, obj.getIva());
+            prodProAlm.setBigDecimal(6, obj.getDescuento());
 
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();
@@ -541,44 +587,23 @@ public class CRUD {
         }
         return valor;
     }
-    ////////// insertar detalle ventas
-    public String InsertarDetalleVentas(Detalle_ventas obj) {
 
-        String valor = "";
+    public int obtenerNumeroOrdenes(String query) {
+        int id = 0;
         try {
             conect = con.conectar();
-            conect.setAutoCommit(false);
-            CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call InsertarCabeceraVentas(?,?,?,?,?,?,?) }");
-            prodProAlm.setLong(1, obj.getId_cabecera_venta());
-            prodProAlm.setLong(2, obj.getId_producto());
-            prodProAlm.setBigDecimal(3, obj.getPrecio());
-            prodProAlm.setLong(4, obj.getCantidad());
-            prodProAlm.setBigDecimal(5, obj.getIva());
-            prodProAlm.setBigDecimal(6, obj.getDescuento());
-            
 
-
-
-            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
-            prodProAlm.executeUpdate();
-            valor = prodProAlm.getString("valor");
-            conect.commit();
-        } catch (Exception e) {
-            try {
-                conect.rollback();
-                e.printStackTrace();
-            } catch (SQLException ex) {
-                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } finally {
-            try {
-                conect.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            java.sql.Statement st = conect.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            id = rs.getInt("cantidad");
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return valor;
+        return id;
     }
 //    public ArrayList<joinProductoDetallesFaltantes> listarFaltantesDetalles(int op) {
 //        ArrayList<joinProductoDetallesFaltantes> lista = new ArrayList<joinProductoDetallesFaltantes>();
@@ -613,6 +638,5 @@ public class CRUD {
 //        return lista;
 //    }
 //
-
 
 }

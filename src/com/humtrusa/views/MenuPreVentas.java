@@ -38,8 +38,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     JoinProductos obj = new JoinProductos();
     Calcular_totales ct = new Calcular_totales();
     Usuario u = new Usuario();
-    
-    
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -564,15 +562,19 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtDirec.setText(u.getDireccion());
         TxtTelefono.setText(u.getTelefono());
         TxtCorreo.setText(u.getCorreo());
-       
+
     }//GEN-LAST:event_BtnBuscarcedulaActionPerformed
 
     private void BtnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVentaActionPerformed
 
         Cabecera_ventas cv = new Cabecera_ventas();
         String id_cab = "";
+        int can = 0 ;
+        String query = "SELECT COUNT(*)+1 AS 'cantidad' FROM cabecera_venta";
+        can = crud.obtenerNumeroOrdenes(query);
+        
 
-        cv.setMun_venta("0000006");
+        cv.setMun_venta(String.format("%06d", can));
         cv.setId_cliente(u.getId());
         cv.setId_empresa(Long.parseLong("1"));
         cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
@@ -582,31 +584,33 @@ public class MenuPreVentas extends javax.swing.JDialog {
         cv.setSubtotal_venta(ct.getSubtotal());
         cv.setDescuento_venta(ct.getDescuento());
         cv.setIva_venta(ct.getIva());
+        
         cv.setTotal_venta(ct.getTotal());
         
-
+        TxtNumeroOrden.setText(cv.getMun_venta());
         id_cab = crud.InsertarCabeceraVentas(cv);
         cv.setId_cabecera_venta(Long.parseLong(id_cab));
 
-//        Detalle_ventas dv = new Detalle_ventas ();
-        String id_det = "";
+        for (int i = 0; i < ListarDetalle.size(); i++) {
 
-//        for (int i=0; i<ListarDetalle.size(); i++){
-//        dv.setId_precio(Long.MIN_VALUE);
-//        dv.setCantidad(WIDTH);
-//        dv.setPrecio_venta(BigDecimal.ZERO);
-//        dv.setDescuento_venta(BigDecimal.TEN);
-//        dv.setIva_venta(BigDecimal.TEN);
-//        
-//        id_det = crud.InsertarDetalleVentas(dv);
-//        dv.setId_detalle_venta(Long.MIN_VALUE);
-//        
-//        System.out.println(ListarDetalle.get(i).getProducto()+ ListarDetalle.get(i).getCantidad()+ ListarDetalle.get(i).getSubtotal()+"   " +ListarDetalle.get(i).getDescuento());
-//        }
-//////        
+            Detalle_ventas dv = new Detalle_ventas();
+            String id_det = "";
+
+            dv.setId_cabecera_venta(cv.getId_cabecera_venta());
+            dv.setId_producto(ListarDetalle.get(i).getId_producto());
+            dv.setPrecio(ListarDetalle.get(i).getPrecio());
+            dv.setCantidad(ListarDetalle.get(i).getCantidad());
+            dv.setIva(ListarDetalle.get(i).getIva());
+            dv.setDescuento(ListarDetalle.get(i).getDescuento());
+
+            id_det = crud.InsertarDetalleVentas(dv);
+            dv.setId_cabecera_venta(Long.parseLong(id_det));
+
+        }
 ////        
 ////        
-        System.out.println(""+ id_cab);
+////        
+        System.out.println("" + can);
 ////        
 ////
 ////
@@ -699,7 +703,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         BigDecimal TotalDescuento = new BigDecimal("0.00");
         BigDecimal Total = new BigDecimal("0.00");
 
-
         for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
 
             Integer Cant = ListarDetalle.get(i).getCantidad();
@@ -729,7 +732,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
 
             Total = Total.add(Subtotal.subtract(Descuento).add(Iva));
-            
+
         }
 
         TotalSubTotal = TotalSubConIva.add(TotalSubSinIva);
@@ -744,7 +747,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         TxtDescuento.setText(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        System.out.println(" id_ usuario " +  u.getId());
+        System.out.println(" id_ usuario " + u.getId());
     }
 
     private void BtnBuscarprodnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarprodnombreActionPerformed
