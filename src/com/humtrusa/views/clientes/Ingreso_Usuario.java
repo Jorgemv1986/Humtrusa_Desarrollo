@@ -19,6 +19,7 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
     public Ingreso_Usuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     /**

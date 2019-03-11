@@ -211,4 +211,6 @@ public class Cabecera_ventas {
         this.estado = estado;
     }
 
+    
+
 }
