@@ -35,7 +35,7 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
     public Principal_Humtrusa() {
         initComponents();
        // this.setLocationRelativeTo(this);
-        this.setTitle("-- Sistema Farmacia --" + TITLE);
+        this.setTitle("-- Sistema Humtrusa --" + TITLE);
         this.setLocationRelativeTo(null);
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setIconImage(getIconoVentana());
