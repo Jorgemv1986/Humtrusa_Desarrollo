@@ -103,6 +103,11 @@ public class Login_humtrusa extends javax.swing.JFrame {
 
         btnCerrar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnCerrar.setText("CANCELAR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,6 +175,10 @@ public class Login_humtrusa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, valor);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
