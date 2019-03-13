@@ -235,7 +235,7 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-      Ingreso_Productos ip=new Ingreso_Productos(this, rootPaneCheckingEnabled);
+      Ingreso_Productos ip=new Ingreso_Productos(this, rootPaneCheckingEnabled,1);
       ip.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -255,17 +255,17 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        Ingreso_Usuario iu = new  Ingreso_Usuario(this, rootPaneCheckingEnabled);
+        Ingreso_Usuario iu = new  Ingreso_Usuario(this, rootPaneCheckingEnabled,1);
         iu.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        usuariosInactivos ui = new usuariosInactivos(this, rootPaneCheckingEnabled);
+        usuariosInactivos ui = new usuariosInactivos(this, rootPaneCheckingEnabled,1);
         ui.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void btnAgregarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuActionPerformed
-       Ingreso_Usuario iu = new Ingreso_Usuario(this, rootPaneCheckingEnabled);
+       Ingreso_Usuario iu = new Ingreso_Usuario(this, rootPaneCheckingEnabled,1);
        iu.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnAgregarUsuActionPerformed
 

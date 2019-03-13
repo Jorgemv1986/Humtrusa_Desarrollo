@@ -31,10 +31,10 @@ public class Ingreso_Productos extends javax.swing.JDialog {
     ArrayList<Tipo_producto> listaTipo = null;
     ArrayList<Medidas_producto> listaMedida = null;
     Long id_clase = null, id_tipo = null, id_medida = null;
-    String error = "", IVA = "";
+    String error = "", IVA = "";  int varCerr=0;
     private final Color color = new Color(63, 63, 220);
-
-    public Ingreso_Productos(java.awt.Frame parent, boolean modal) {
+    
+     public Ingreso_Productos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setResizable(false);
@@ -42,6 +42,17 @@ public class Ingreso_Productos extends javax.swing.JDialog {
         jLabel1.setForeground(Color.WHITE);
         jPanel1.setBackground(color);
         llenarComboBoxProductos();
+        
+    }
+    public Ingreso_Productos(java.awt.Frame parent, boolean modal,int x) {
+        super(parent, modal);
+        initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        jLabel1.setForeground(Color.WHITE);
+        jPanel1.setBackground(color);
+        llenarComboBoxProductos();
+        varCerr=x;
         
     }
 
@@ -457,8 +468,11 @@ public class Ingreso_Productos extends javax.swing.JDialog {
         hp.setVisible(true);
     }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        if(varCerr==1){
+        this.setVisible(false);
+        }else{
         llamarHumtrusaProductos();
-
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void cbxClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxClaseActionPerformed

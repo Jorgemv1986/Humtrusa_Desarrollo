@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class Ingreso_Usuario extends javax.swing.JDialog {
 
-   CRUD crud =new CRUD();
+   CRUD crud =new CRUD(); int varCerr=0;
    private final Color color = new Color(63, 63, 220);
     images im = new images();
     public Ingreso_Usuario(java.awt.Frame parent, boolean modal) {
@@ -26,6 +26,14 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
         this.setLocationRelativeTo(this);
         jLabel1.setForeground(Color.WHITE);
         jPanel1.setBackground(color);
+    }
+    public Ingreso_Usuario(java.awt.Frame parent, boolean modal,int x) {
+        super(parent, modal);
+        initComponents();
+        this.setLocationRelativeTo(this);
+        jLabel1.setForeground(Color.WHITE);
+        jPanel1.setBackground(color);
+        varCerr=x;
     }
 
     /**
@@ -262,7 +270,14 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        this.dispose();       
+        if(varCerr==1){
+        this.dispose();
+        }else{
+        this.setVisible(false);
+        Humtrusa_usuarios rr = new Humtrusa_usuarios(new javax.swing.JFrame(),true);
+        rr.setVisible(rootPaneCheckingEnabled);
+        }
+               
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

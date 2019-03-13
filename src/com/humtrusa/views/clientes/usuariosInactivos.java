@@ -23,7 +23,7 @@ public class usuariosInactivos extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     ArrayList<Usuario> listausu = null;
     Usuario objeto = new Usuario();
-    String buscar = "";
+    String buscar = ""; int varCerr=0;
 
     public usuariosInactivos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -32,6 +32,14 @@ public class usuariosInactivos extends javax.swing.JDialog {
         listausu = crud.ListarTodoUsuario(2);
         Tablas.listarUsuario(listausu, table);
 
+    }
+    public usuariosInactivos(java.awt.Frame parent, boolean modal,int x) {
+        super(parent, modal);
+        initComponents();
+        this.setLocationRelativeTo(null);
+        listausu = crud.ListarTodoUsuario(2);
+        Tablas.listarUsuario(listausu, table);
+        varCerr=x;
     }
 
     /**
@@ -166,7 +174,9 @@ public class usuariosInactivos extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        regresarHumtrusaUsuarios();
+        if(varCerr==1){
+        this.setVisible(false);
+        }else{regresarHumtrusaUsuarios();}
     }//GEN-LAST:event_btnCerrarActionPerformed
    
     private void btnActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarActionPerformed
