@@ -2,7 +2,10 @@ package com.humtrusa.views.principal;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Fondo extends javax.swing.JPanel {
 
@@ -18,5 +21,5 @@ public class Fondo extends javax.swing.JPanel {
         setOpaque(false);
         super.paintComponent(g);
     }
-
+    
 }

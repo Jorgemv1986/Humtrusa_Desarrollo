@@ -423,7 +423,7 @@ public class modificar_productos extends javax.swing.JDialog {
 
     public void llamarHumtrusaProductos() {
         this.dispose();
-        elegirProductos hp = new elegirProductos(new javax.swing.JFrame(), true);
+        Humtrusa_productos hp = new Humtrusa_productos(new javax.swing.JFrame(), true);
         hp.setVisible(true);
     }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
