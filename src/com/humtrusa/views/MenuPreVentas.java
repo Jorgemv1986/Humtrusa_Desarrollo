@@ -578,13 +578,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private void BtnBuscarcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarcedulaActionPerformed
         elegir_usuarios eu = new elegir_usuarios(new javax.swing.JFrame(), true);
         eu.setVisible(true);
+        if(eu.getUsuario().getId()!=null){
         u = eu.getUsuario();
         TxtCedula.setText(u.getCedula());
         TxtNombre.setText(u.getNombres() + " " + u.getApellidos());
         TxtDirec.setText(u.getDireccion());
         TxtTelefono.setText(u.getTelefono());
         TxtCorreo.setText(u.getCorreo());
-
+        }else{}
     }//GEN-LAST:event_BtnBuscarcedulaActionPerformed
 
     private void BtnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVentaActionPerformed
