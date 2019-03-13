@@ -55,11 +55,15 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAgregarUsu = new javax.swing.JButton();
+        btnEditarUsu = new javax.swing.JButton();
+        btnPreventa = new javax.swing.JButton();
+        btnProducto = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -73,30 +77,39 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/usuario.png"))); // NOI18N
-        jButton1.setText("AGREGAR USUARIO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarUsu.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnAgregarUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-amigo.png"))); // NOI18N
+        btnAgregarUsu.setText("AGREGAR USUARIO");
+        btnAgregarUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarUsuActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/usuario (1).png"))); // NOI18N
-        jButton2.setText("EDITAR USUARIO");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarUsu.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnEditarUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ajustes.png"))); // NOI18N
+        btnEditarUsu.setText("EDITAR USUARIO");
+        btnEditarUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEditarUsuActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lista.png"))); // NOI18N
-        jButton3.setText("VENTA");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnPreventa.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnPreventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lista-de-verificacion (1).png"))); // NOI18N
+        btnPreventa.setText("PRE-VENTA");
+        btnPreventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnPreventaActionPerformed(evt);
+            }
+        });
+
+        btnProducto.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/paquete.png"))); // NOI18N
+        btnProducto.setText("PRODUCTO");
+        btnProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductoActionPerformed(evt);
             }
         });
 
@@ -106,25 +119,38 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregarUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addComponent(btnPreventa, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgregarUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditarUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPreventa, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Componente");
+        jMenu1.setText("Componentes");
+
+        jMenuItem8.setText("Clase");
+        jMenu1.add(jMenuItem8);
+
+        jMenuItem9.setText("Tipo");
+        jMenu1.add(jMenuItem9);
+
+        jMenuItem10.setText("Medida");
+        jMenu1.add(jMenuItem10);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Productos");
@@ -238,17 +264,25 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
         ui.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("holaaaa");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnAgregarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuActionPerformed
+       Ingreso_Usuario iu = new Ingreso_Usuario(this, rootPaneCheckingEnabled);
+       iu.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnAgregarUsuActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnEditarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuActionPerformed
+        Humtrusa_usuarios hu = new Humtrusa_usuarios(this, rootPaneCheckingEnabled);
+        hu.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnEditarUsuActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnPreventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreventaActionPerformed
+       MenuPreVentas mu = new MenuPreVentas(this, rootPaneCheckingEnabled);
+       mu.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnPreventaActionPerformed
+
+    private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
+        Humtrusa_productos hp = new Humtrusa_productos(this, rootPaneCheckingEnabled);
+        hp.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,21 +320,25 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAgregarUsu;
+    private javax.swing.JButton btnEditarUsu;
+    private javax.swing.JButton btnPreventa;
+    private javax.swing.JButton btnProducto;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

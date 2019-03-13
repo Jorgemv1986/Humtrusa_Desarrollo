@@ -11,6 +11,7 @@ import com.humtrusa.views.clientes.usuariosInactivos;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -109,6 +110,12 @@ public class Login_humtrusa extends javax.swing.JFrame {
             }
         });
 
+        txtcontra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcontraKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,7 +169,10 @@ public class Login_humtrusa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        String valor = "";
+        inicio();
+    }//GEN-LAST:event_btnIngresarActionPerformed
+    public void inicio(){
+    String valor = "";
         Usuario u = new Usuario();
         u.setCedula(txtusuario.getText());
         u.setContrasena(txtcontra.getText());
@@ -174,11 +184,16 @@ public class Login_humtrusa extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, valor);
         }
-    }//GEN-LAST:event_btnIngresarActionPerformed
-
+    }
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
        this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void txtcontraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontraKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           inicio();       
+       }
+    }//GEN-LAST:event_txtcontraKeyPressed
 
     /**
      * @param args the command line arguments
