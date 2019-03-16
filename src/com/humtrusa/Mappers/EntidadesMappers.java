@@ -7,11 +7,16 @@ package com.humtrusa.Mappers;
 
 import com.humtrusa.entidades.Clase_producto;
 import com.humtrusa.entidades.JoinProductos;
+import com.humtrusa.entidades.Join_Cabecera_ventas;
+import com.humtrusa.entidades.Join_Detalle_ventas;
 import com.humtrusa.entidades.Medidas_producto;
 import com.humtrusa.entidades.Tipo_producto;
 import com.humtrusa.entidades.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -108,4 +113,47 @@ public class EntidadesMappers {
         }
         return obj;
     }        
+    public static Join_Cabecera_ventas getJoinCabecerasVentas(ResultSet rs) {
+        Join_Cabecera_ventas obj = new Join_Cabecera_ventas();
+        try {
+            obj.setId_cabecera_venta(rs.getLong("ID"));
+            obj.setMun_venta(rs.getString("NUM_VENTA"));
+            obj.setFecha_venta(rs.getDate("FECHA_CREACION"));
+            obj.setId_cliente(rs.getLong("ID_USUARIO"));
+            obj.setCedula(rs.getString("CEDULA"));
+            obj.setNombres(rs.getString("NOMBRES"));
+            obj.setApellidos(rs.getString("APELLIDOS"));
+            obj.setTelefono(rs.getString("TELEFONO"));
+            obj.setDireccion(rs.getString("DIRECCION"));
+            obj.setCorreo(rs.getString("CORREO"));
+            obj.setForma_de_pago(rs.getString("TIPO_PAGO"));
+            obj.setTipo_de_venta(rs.getString("TIPO_VENTA"));
+            obj.setSubtotal_con_iva(rs.getBigDecimal("SUBTOTAL_CON_IVA"));
+            obj.setSubtotal_sin_iva(rs.getBigDecimal("SUBTOTAL_SIN_IVA"));
+            obj.setIva_venta(rs.getBigDecimal("IVA_TOTAL"));
+            obj.setDescuento_venta(rs.getBigDecimal("DESCUENTO_TOTAL"));
+            obj.setTotal_venta(rs.getBigDecimal("TOTAL"));
+            
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    public static Join_Detalle_ventas getJoinDetallesVentas(ResultSet rs) {
+        Join_Detalle_ventas obj = new Join_Detalle_ventas();
+        try {
+            obj.setId_detalle_venta(rs.getLong("ID"));
+            obj.setId_cabecera_venta(rs.getLong("ID_CABECERA_VENTA"));
+            obj.setId_producto(rs.getLong("ID_PRODUCTO"));
+            obj.setNombre_producto(rs.getString("NOMBRE"));
+            obj.setPrecio(rs.getBigDecimal("PRECIO"));
+            obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));       
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
 }

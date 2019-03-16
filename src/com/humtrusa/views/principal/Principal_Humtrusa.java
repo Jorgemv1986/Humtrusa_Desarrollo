@@ -11,6 +11,10 @@ import com.humtrusa.views.clientes.Ingreso_Usuario;
 import com.humtrusa.views.clientes.usuariosInactivos;
 import com.humtrusa.views.productos.Humtrusa_productos;
 import com.humtrusa.views.productos.Ingreso_Productos;
+import com.humtrusa.views.productos.componentes.Clases_productos;
+import com.humtrusa.views.productos.componentes.Medidas_productos;
+import com.humtrusa.views.productos.componentes.Tipos_productos;
+import com.humtrusa.views.ventasRealizadas.cabeceraPreventa;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -30,11 +34,12 @@ import javax.swing.JButton;
  */
 public class Principal_Humtrusa extends javax.swing.JFrame {
 
-   String TITLE = "Principal";
-   private final Color color = new Color(63,63,220);//[63,63,220]
+    String TITLE = "Principal";
+    private final Color color = new Color(63, 63, 220);//[63,63,220]
+
     public Principal_Humtrusa() {
         initComponents();
-       // this.setLocationRelativeTo(this);
+        // this.setLocationRelativeTo(this);
         this.setTitle("-- Sistema Humtrusa --" + TITLE);
         this.setLocationRelativeTo(null);
         this.setExtendedState(this.MAXIMIZED_BOTH);
@@ -42,9 +47,11 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
         jPanel1.setBackground(color);
         this.add(new Fondo(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height), BorderLayout.CENTER);
     }
-    static public Image getIconoVentana(){
+
+    static public Image getIconoVentana() {
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/icon.png"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,13 +149,28 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
 
         jMenu1.setText("Componentes");
 
-        jMenuItem8.setText("Clase");
+        jMenuItem8.setText("Mantenimiento Clase");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem8);
 
-        jMenuItem9.setText("Tipo");
+        jMenuItem9.setText("Mantenimiento Tipo");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem9);
 
-        jMenuItem10.setText("Medida");
+        jMenuItem10.setText("Mantenimiento Medida");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem10);
 
         jMenuBar1.add(jMenu1);
@@ -173,9 +195,9 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Clientes");
+        jMenu3.setText("Usuarios");
 
-        jMenuItem2.setText("Mantenimiento Cliente");
+        jMenuItem2.setText("Mantenimiento Usuario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -183,7 +205,7 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem2);
 
-        jMenuItem5.setText("Nuevo Cliente");
+        jMenuItem5.setText("Nuevo Usuario");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -203,7 +225,12 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
 
         jMenu4.setText("Pre-Ventas");
 
-        jMenuItem1.setText("Pre-ventas Realizadas");
+        jMenuItem1.setText("Ventas Realizadas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem1);
 
         jMenuItem7.setText("Nueva Pre-venta");
@@ -235,18 +262,18 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-      Ingreso_Productos ip=new Ingreso_Productos(this, rootPaneCheckingEnabled,1);
-      ip.setVisible(rootPaneCheckingEnabled);
+        Ingreso_Productos ip = new Ingreso_Productos(this, rootPaneCheckingEnabled, 1);
+        ip.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Humtrusa_productos hp=new Humtrusa_productos(this, rootPaneCheckingEnabled);
+        Humtrusa_productos hp = new Humtrusa_productos(this, rootPaneCheckingEnabled);
         hp.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-    MenuPreVentas mp = new MenuPreVentas(this, rootPaneCheckingEnabled);
-    mp.setVisible(rootPaneCheckingEnabled);
+        MenuPreVentas mp = new MenuPreVentas(this, rootPaneCheckingEnabled);
+        mp.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -255,18 +282,18 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        Ingreso_Usuario iu = new  Ingreso_Usuario(this, rootPaneCheckingEnabled,1);
+        Ingreso_Usuario iu = new Ingreso_Usuario(this, rootPaneCheckingEnabled, 1);
         iu.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        usuariosInactivos ui = new usuariosInactivos(this, rootPaneCheckingEnabled,1);
+        usuariosInactivos ui = new usuariosInactivos(this, rootPaneCheckingEnabled, 1);
         ui.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void btnAgregarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuActionPerformed
-       Ingreso_Usuario iu = new Ingreso_Usuario(this, rootPaneCheckingEnabled,1);
-       iu.setVisible(rootPaneCheckingEnabled);
+        Ingreso_Usuario iu = new Ingreso_Usuario(this, rootPaneCheckingEnabled, 1);
+        iu.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnAgregarUsuActionPerformed
 
     private void btnEditarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuActionPerformed
@@ -275,14 +302,34 @@ public class Principal_Humtrusa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarUsuActionPerformed
 
     private void btnPreventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreventaActionPerformed
-       MenuPreVentas mu = new MenuPreVentas(this, rootPaneCheckingEnabled);
-       mu.setVisible(rootPaneCheckingEnabled);
+        MenuPreVentas mu = new MenuPreVentas(this, rootPaneCheckingEnabled);
+        mu.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnPreventaActionPerformed
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
         Humtrusa_productos hp = new Humtrusa_productos(this, rootPaneCheckingEnabled);
         hp.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnProductoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        cabeceraPreventa cp=new cabeceraPreventa(this, rootPaneCheckingEnabled);
+        cp.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        Clases_productos cp = new Clases_productos(this, rootPaneCheckingEnabled);
+        cp.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        Tipos_productos cp = new Tipos_productos(this, rootPaneCheckingEnabled);
+        cp.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        Medidas_productos cp = new Medidas_productos(this, rootPaneCheckingEnabled);
+        cp.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments

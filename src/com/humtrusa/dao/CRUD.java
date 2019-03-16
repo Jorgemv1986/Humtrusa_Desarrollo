@@ -10,6 +10,8 @@ import com.humtrusa.entidades.Cabecera_ventas;
 import com.humtrusa.entidades.Clase_producto;
 import com.humtrusa.entidades.Detalle_ventas;
 import com.humtrusa.entidades.JoinProductos;
+import com.humtrusa.entidades.Join_Cabecera_ventas;
+import com.humtrusa.entidades.Join_Detalle_ventas;
 import com.humtrusa.entidades.Medidas_producto;
 import com.humtrusa.entidades.Tipo_producto;
 import com.humtrusa.entidades.Usuario;
@@ -638,7 +640,8 @@ public class CRUD {
 //        return lista;
 //    }
 //
-public String IngresoDeSesion(Usuario obj) {
+
+    public String IngresoDeSesion(Usuario obj) {
 
         String valor = "";
         try {
@@ -648,7 +651,6 @@ public String IngresoDeSesion(Usuario obj) {
                     "{ call inicioSesion(?,?,?) }");
             prodProAlm.setString(1, obj.getCedula());
             prodProAlm.setString(2, obj.getContrasena());
-            
 
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();
@@ -669,5 +671,101 @@ public String IngresoDeSesion(Usuario obj) {
             }
         }
         return valor;
+    }
+
+    public String EditarComponenteProducto(int op, String u,Long idCom) {
+        String valor = "";
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call EditarComponenteProducto(?,?,?,?) }");
+            proced.setInt(1, op);
+            proced.setString(2, u);
+            proced.setLong(3, idCom);
+            proced.registerOutParameter("valor", Types.VARCHAR);
+            proced.executeUpdate();
+            valor = proced.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public ArrayList<Join_Cabecera_ventas> ListarCabeceraVentas(int op) {
+        ArrayList<Join_Cabecera_ventas> lista = new ArrayList<Join_Cabecera_ventas>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call listarCabeceraVentas(?) }");
+            proced.setInt(1, op);
+            proced.execute();
+            rs = proced.getResultSet();
+            while (rs.next()) {
+                Join_Cabecera_ventas obj = EntidadesMappers.getJoinCabecerasVentas(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    public ArrayList<Join_Detalle_ventas> ListarDetallesVentas(int idCab) {
+        ArrayList<Join_Detalle_ventas> lista = new ArrayList<Join_Detalle_ventas>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call ListarDetallesVentas(?) }");
+            proced.setInt(1, idCab);
+            proced.execute();
+            rs = proced.getResultSet();
+            while (rs.next()) {
+                Join_Detalle_ventas obj = EntidadesMappers.getJoinDetallesVentas(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
     }
 }

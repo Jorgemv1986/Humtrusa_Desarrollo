@@ -6,8 +6,13 @@
 package com.humtrusa.componentes;
 
 //import com.objetos.domain.Laboratorio;
+import com.humtrusa.entidades.Clase_producto;
 import com.humtrusa.entidades.Detalle_ventas;
 import com.humtrusa.entidades.JoinProductos;
+import com.humtrusa.entidades.Join_Cabecera_ventas;
+import com.humtrusa.entidades.Join_Detalle_ventas;
+import com.humtrusa.entidades.Medidas_producto;
+import com.humtrusa.entidades.Tipo_producto;
 import com.humtrusa.entidades.Usuario;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -212,5 +217,127 @@ public class Tablas {
         }
 
     }
+    public static void listarComponenteClaseProducto(ArrayList<Clase_producto> lista, JTable Tabla) {
+        model = Tablas.VaciarTabla(Tabla);
+        int[] a = {100, 190};
+        model.setColumnIdentifiers(new Object[]{"CODIGO", "NOMBRE"});
 
+        try {
+            for (Clase_producto rs : lista) {
+                // añade los resultado a al modelo de tabla
+                model.addRow(new Object[]{rs.getId_clase(),rs.getNombre_clase()});
+            }
+            // asigna el modelo a la tabla
+
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+    public static void listarComponenteTipoProducto(ArrayList<Tipo_producto> lista, JTable Tabla) {
+        model = Tablas.VaciarTabla(Tabla);
+        int[] a = {100, 190};
+        model.setColumnIdentifiers(new Object[]{"CODIGO", "NOMBRE"});
+
+        try {
+            for (Tipo_producto rs : lista) {
+                // añade los resultado a al modelo de tabla
+                model.addRow(new Object[]{rs.getId_tipo(),rs.getNombre_tipo()});
+            }
+            // asigna el modelo a la tabla
+
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+    public static void listarComponenteMedidaProducto(ArrayList<Medidas_producto> lista, JTable Tabla) {
+        model = Tablas.VaciarTabla(Tabla);
+        int[] a = {100, 190};
+        model.setColumnIdentifiers(new Object[]{"CODIGO", "NOMBRE"});
+
+        try {
+            for (Medidas_producto rs : lista) {
+                // añade los resultado a al modelo de tabla
+                model.addRow(new Object[]{rs.getId_medida(),rs.getNombre_medida()});
+            }
+            // asigna el modelo a la tabla
+
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+    public static void listarCabecerasVentas(ArrayList<Join_Cabecera_ventas> lista, JTable Tabla) {
+        model = Tablas.VaciarTabla(Tabla);
+        int[] a = {90, 200, 200, 250, 150, 110, 110, 110, 110, 110};
+        model.setColumnIdentifiers(new Object[]{"CODIGO", "FECHA CREACION", "CEDULA", "CLIENTE", "TELEFONO", "TIPO PAGO", "TIPO VENTA", "IVA", "DESCUENTO", "TOTAL"});
+
+        try {
+            for (Join_Cabecera_ventas rs : lista) {
+                // añade los resultado a al modelo de tabla
+                model.addRow(new Object[]{rs.getMun_venta(), rs.getFecha_venta(), rs.getCedula(), rs.getApellidos()+" "+rs.getNombres(), rs.getTelefono(),
+                    rs.getForma_de_pago(), rs.getTipo_de_venta(), rs.getIva_venta(), rs.getDescuento_venta(),
+                    rs.getTotal_venta()});
+            }
+            // asigna el modelo a la tabla
+
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
+            Tabla.getColumnModel().getColumn(8).setPreferredWidth(a[8]);
+            Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
+  
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+     public static void listarDetallesVentas(ArrayList<Join_Detalle_ventas> lista, JTable Tabla) {
+        model = Tablas.VaciarTabla(Tabla);
+        int[] a = {90, 200, 200, 250, 150, 110};
+        model.setColumnIdentifiers(new Object[]{"CODIGO", "PRODUCTO", "PRECIO", "CANTIDAD", "IVA", "DESCUENTO"});
+
+        try {
+            for (Join_Detalle_ventas rs : lista) {
+                // añade los resultado a al modelo de tabla
+                model.addRow(new Object[]{rs.getId_producto(), rs.getNombre_producto(), rs.getPrecio(), rs.getCantidad(), rs.getIva(),
+                    rs.getDescuento()});
+            }
+            // asigna el modelo a la tabla
+
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+           } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
 }
