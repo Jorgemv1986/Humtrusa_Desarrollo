@@ -7,7 +7,6 @@ package com.humtrusa.views;
 
 import com.humtrusa.dao.Conexion;
 import com.humtrusa.entidades.Cabecera_ventas;
-import java.awt.Toolkit;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
@@ -123,7 +122,8 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
             JasperReport reporte;
             String path = "src\\com\\humtrusa\\reportes\\report1.jasper";
             Map parametro = new HashMap();
-            parametro.put("_id_cabecera", Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())));
+//            parametro.put("_id_cabecera", Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())));
+            parametro.put("_id_cabecera", obj.getId_cabecera_venta());
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
             JasperViewer view = new JasperViewer(jprint, false);

@@ -2,9 +2,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="df2ff16f-8f21-496a-a485-ed1c7710c804">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="133"/>
 	<subDataset name="dataset1" uuid="d6a1a001-36f4-48e1-80e8-420067d7a3e4">
-		<parameter name="_id_cabecera_detalle" class="java.lang.Integer">
+		<parameter name="_id_cabecera_detalle" class="java.lang.Long">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
 		<queryString>
@@ -23,7 +23,7 @@ WHERE `detalle_venta`.`id_cabecera_venta` = $P{_id_cabecera_detalle}]]>
 		<field name="P.Unitario" class="java.math.BigDecimal"/>
 		<field name="P.total" class="java.math.BigDecimal"/>
 	</subDataset>
-	<parameter name="_id_cabecera" class="java.lang.Integer">
+	<parameter name="_id_cabecera" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>

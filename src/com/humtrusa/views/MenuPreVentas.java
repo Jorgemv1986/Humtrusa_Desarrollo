@@ -14,20 +14,8 @@ import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Usuario;
 import com.humtrusa.views.principal.images;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Event;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,7 +32,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     Cabecera_ventas objeto = new Cabecera_ventas();
     private final Color color = new Color(63, 63, 220);
     images im = new images();
-    
+
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -59,20 +47,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     public MenuPreVentas() {
     }
 
-//    public MenuPreVentas(java.awt.Frame parent, boolean modal, JoinProductos obj1) {
-//        super(parent, modal);
-//        initComponents();
-//        this.setLocationRelativeTo(null);
-//        llenarFormulario();
-    //  ListarDetalle = new ArrayList<Detalle_ventas>();
-//        this.setLocationRelativeTo(null);
-//        this.setResizable(false);
-//        TxtFecha.setText(FechaActual());
-//    }
-//    public  void llenarFormulario() {
-//        TxtProdNombre.setText(obj.getNombre());
-//        TxtProdPrecio.setText(obj.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,7 +147,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel27.setText("Subtotal sin impuesto:");
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/error.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cancelar.png"))); // NOI18N
         jButton1.setText("CERRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,9 +170,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel23))
+                            .addComponent(jLabel23)
                             .addComponent(jLabel24)
                             .addComponent(jLabel25)
                             .addComponent(jLabel22)
@@ -331,18 +303,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
         );
 
         CbxFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "contado", "credito" }));
-        CbxFormaPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CbxFormaPagoActionPerformed(evt);
-            }
-        });
 
         CbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Nota de venta" }));
-        CbxTipoVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CbxTipoVentaActionPerformed(evt);
-            }
-        });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -383,11 +345,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        TxtDescuentoPorcentaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtDescuentoPorcentajeActionPerformed(evt);
-            }
-        });
         TxtDescuentoPorcentaje.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtDescuentoPorcentajeKeyReleased(evt);
@@ -571,43 +528,27 @@ public class MenuPreVentas extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    class horas implements ActionListener {
-//
-//        public void actionPerformed(ActionEvent e) {
-//            java.util.Date sistHora = new java.util.Date();
-//            String pmAm = "HH:mm:ss";
-//            SimpleDateFormat format = new SimpleDateFormat(pmAm);
-//            Calendar hoy = Calendar.getInstance();
-//            TxtHora.setText(String.format(format.format(sistHora), hoy));
-//
-//        }
-//    }
-//    public static String FechaActual() {
-//        Date fecha = new Date();
-//        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-YYYY");
-//        return formatoFecha.format(fecha);
-//    }
-
     private void BtnBuscarcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarcedulaActionPerformed
         elegir_usuarios eu = new elegir_usuarios(new javax.swing.JFrame(), true);
         eu.setVisible(true);
-        if(eu.getUsuario().getId()!=null){
-        u = eu.getUsuario();
-        TxtCedula.setText(u.getCedula());
-        TxtNombre.setText(u.getNombres() + " " + u.getApellidos());
-        TxtDirec.setText(u.getDireccion());
-        TxtTelefono.setText(u.getTelefono());
-        TxtCorreo.setText(u.getCorreo());
-        }else{}
+        if (eu.getUsuario().getId() != null) {
+            u = eu.getUsuario();
+            TxtCedula.setText(u.getCedula());
+            TxtNombre.setText(u.getNombres() + " " + u.getApellidos());
+            TxtDirec.setText(u.getDireccion());
+            TxtTelefono.setText(u.getTelefono());
+            TxtCorreo.setText(u.getCorreo());
+        } else {
+        }
     }//GEN-LAST:event_BtnBuscarcedulaActionPerformed
 
     private void BtnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVentaActionPerformed
 
         if (!TxtTotal.getText().equals("") && !TxtCedula.getText().equals("")) {
-            
+
             Cabecera_ventas cv = new Cabecera_ventas();
-            String id_cab = "";
-            int can = 0;
+            String id_cab;
+            int can;
             String query = "SELECT COUNT(*)+1 AS 'cantidad' FROM cabecera_venta";
             can = crud.obtenerNumeroOrdenes(query);
 
@@ -621,8 +562,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
             cv.setSubtotal_venta(ct.getSubtotal());
             cv.setDescuento_venta(ct.getDescuento());
             cv.setIva_venta(ct.getIva());
-
             cv.setTotal_venta(ct.getTotal());
+            cv.setEstado("ACTIVO");
 
             id_cab = crud.InsertarCabeceraVentas(cv);
             cv.setId_cabecera_venta(Long.parseLong(id_cab));
@@ -634,7 +575,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             for (int i = 0; i < ListarDetalle.size(); i++) {
 
                 Detalle_ventas dv = new Detalle_ventas();
-                String id_det = "";
+                String id_det;
 
                 dv.setId_cabecera_venta(cv.getId_cabecera_venta());
                 dv.setId_producto(ListarDetalle.get(i).getId_producto());
@@ -649,9 +590,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
-
-//        this.setVisible(false);
-//            setModal(false);
 
         }
 
@@ -669,7 +607,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         Detalle_ventas RegDetalleVentas = new Detalle_ventas();
         RegDetalleVentas.setId_producto(obj.getId_producto());
         RegDetalleVentas.setNombre_producto(obj.getNombre());
-        RegDetalleVentas.setCantidad(Integer.parseInt(TxtProdCantidad.getText()));
+        RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));
         RegDetalleVentas.setPrecio(BigDecimal.valueOf(Double.parseDouble(TxtProdPrecio.getText())));
         RegDetalleVentas.setSubtotal(BigDecimal.valueOf(Double.parseDouble(TxtProdSubtotal.getText())));
         RegDetalleVentas.setDescuento(BigDecimal.valueOf(Double.parseDouble(TxtProdDescuento.getText())));
@@ -761,7 +699,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
 
-            Integer Cant = ListarDetalle.get(i).getCantidad();
+            Long Cant = ListarDetalle.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
             System.out.println("cantidad " + Cantidad);
             BigDecimal Precio = ListarDetalle.get(i).getPrecio();
@@ -798,15 +736,15 @@ public class MenuPreVentas extends javax.swing.JDialog {
         ct.setSubtotalConIva(TotalSubConIva);
         ct.setSubtotalSinIva(TotalSubSinIva);
         ct.setSubtotal(TotalSubTotal);
-        ct.setIva(Total);
+        ct.setIva(TotalIva);
         ct.setDescuento(TotalDescuento);
         ct.setTotal(Total);
-        TxtSubtotalconIva.setText(TotalSubConIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtSubtotalsinIva.setText(TotalSubSinIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtSubtotal.setText(TotalSubTotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        TxtSubtotalconIva.setText(TotalSubConIva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtSubtotalsinIva.setText(TotalSubSinIva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtSubtotal.setText(TotalSubTotal.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
         TxtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtDescuento.setText(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        TxtDescuento.setText(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
 
     }
 
@@ -850,14 +788,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_BtnBuscarprodnombreActionPerformed
 
-    private void CbxFormaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxFormaPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CbxFormaPagoActionPerformed
-
-    private void CbxTipoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxTipoVentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CbxTipoVentaActionPerformed
-
     private void TablaListarVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaListarVentasMousePressed
 
         try {
@@ -880,10 +810,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_TablaListarVentasMousePressed
-
-    private void TxtDescuentoPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDescuentoPorcentajeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtDescuentoPorcentajeActionPerformed
 
     private void TxtDescuentoPorcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtDescuentoPorcentajeKeyTyped
 
@@ -917,7 +843,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtDescuentoPorcentajeKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

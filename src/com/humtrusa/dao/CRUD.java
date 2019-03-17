@@ -520,7 +520,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call InsertarCabeceraVentas(?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call InsertarCabeceraVentas(?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getMun_venta());
             prodProAlm.setLong(2, obj.getId_cliente());
             prodProAlm.setLong(3, obj.getId_empresa());
@@ -531,6 +531,7 @@ public class CRUD {
             prodProAlm.setBigDecimal(8, obj.getIva_venta());
             prodProAlm.setBigDecimal(9, obj.getDescuento_venta());
             prodProAlm.setBigDecimal(10, obj.getTotal_venta());
+            prodProAlm.setString(11, obj.getEstado());
 
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();

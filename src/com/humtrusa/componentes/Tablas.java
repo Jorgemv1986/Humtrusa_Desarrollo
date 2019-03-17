@@ -162,11 +162,11 @@ public class Tablas {
             Filas[0] = "" + lista.get(i).getId_producto();
             Filas[1] = lista.get(i).getNombre_producto();
             Filas[2] = "" + lista.get(i).getCantidad();
-            Filas[3] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[4] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[5] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[6] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[7] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+            Filas[3] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[4] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[5] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[6] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[7] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
             model.addRow(Filas);
 
             Tabla.setModel(model);
@@ -317,14 +317,14 @@ public class Tablas {
     }
      public static void listarDetallesVentas(ArrayList<Join_Detalle_ventas> lista, JTable Tabla) {
         model = Tablas.VaciarTabla(Tabla);
-        int[] a = {90, 200, 200, 250, 150, 110};
-        model.setColumnIdentifiers(new Object[]{"CODIGO", "PRODUCTO", "PRECIO", "CANTIDAD", "IVA", "DESCUENTO"});
+        int[] a = {90,300, 250, 150, 250, 250, 250,250};
+        model.setColumnIdentifiers(new Object[]{"CODIGO", "PRODUCTO", "PRECIO", "CANTIDAD","SUBTOTAL", "DESCUENTO","IVA","TOTAL"});
 
         try {
             for (Join_Detalle_ventas rs : lista) {
                 // añade los resultado a al modelo de tabla
-                model.addRow(new Object[]{rs.getId_producto(), rs.getNombre_producto(), rs.getPrecio(), rs.getCantidad(), rs.getIva(),
-                    rs.getDescuento()});
+                model.addRow(new Object[]{rs.getId_producto(), rs.getNombre_producto(), rs.getPrecio(), rs.getCantidad(),rs.getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString(),
+                    rs.getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString(),rs.getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString(),rs.getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString()});
             }
             // asigna el modelo a la tabla
 
@@ -335,6 +335,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
             Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
            } catch (Exception e) {
             System.out.println(e);
         }

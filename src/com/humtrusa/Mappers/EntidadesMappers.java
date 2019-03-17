@@ -130,6 +130,7 @@ public class EntidadesMappers {
             obj.setTipo_de_venta(rs.getString("TIPO_VENTA"));
             obj.setSubtotal_con_iva(rs.getBigDecimal("SUBTOTAL_CON_IVA"));
             obj.setSubtotal_sin_iva(rs.getBigDecimal("SUBTOTAL_SIN_IVA"));
+            obj.setSubtotal_venta(rs.getBigDecimal("SUBTOTAL"));
             obj.setIva_venta(rs.getBigDecimal("IVA_TOTAL"));
             obj.setDescuento_venta(rs.getBigDecimal("DESCUENTO_TOTAL"));
             obj.setTotal_venta(rs.getBigDecimal("TOTAL"));
@@ -148,9 +149,11 @@ public class EntidadesMappers {
             obj.setId_producto(rs.getLong("ID_PRODUCTO"));
             obj.setNombre_producto(rs.getString("NOMBRE"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
-            obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setCantidad(rs.getLong("CANTIDAD"));
+            obj.setSubtotal(rs.getBigDecimal("SUBTOTAL"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));
-            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));       
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }

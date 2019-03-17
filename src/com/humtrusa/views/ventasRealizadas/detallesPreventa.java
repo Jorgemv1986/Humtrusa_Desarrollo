@@ -11,6 +11,7 @@ import com.humtrusa.entidades.Join_Cabecera_ventas;
 import com.humtrusa.entidades.Join_Detalle_ventas;
 import com.humtrusa.views.principal.images;
 import java.awt.Color;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -430,6 +431,12 @@ public class detallesPreventa extends javax.swing.JDialog {
     txtdireccion.setText(objeto.getDireccion());
     txtFromaPago.setText(objeto.getForma_de_pago());
     txtTipoVenta.setText(objeto.getTipo_de_venta());
+    TxtSubtotalconIva.setText(objeto.getSubtotal_con_iva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+    TxtSubtotalsinIva.setText(objeto.getSubtotal_sin_iva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+    TxtSubtotal.setText(objeto.getSubtotal_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+    TxtDescuento.setText(objeto.getDescuento_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+    TxtIva.setText(objeto.getIva_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+    TxtTotal.setText(objeto.getTotal_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
     }
     private void BtnGenerarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVenta1ActionPerformed
         // TODO add your handling code here:
