@@ -106,14 +106,18 @@ public class detallesPreventa extends javax.swing.JDialog {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 11))); // NOI18N
 
+        txtcliente.setEditable(false);
+
         jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("FECHA REGISTRO:");
+
+        txtfechaRegistro.setEditable(false);
 
         jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -127,6 +131,10 @@ public class detallesPreventa extends javax.swing.JDialog {
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel23.setText("CLIENTE:");
 
+        txtcedula.setEditable(false);
+
+        txtdireccion.setEditable(false);
+
         jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel24.setText("DIRECCION:");
@@ -134,6 +142,10 @@ public class detallesPreventa extends javax.swing.JDialog {
         jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel25.setText("TELEFONO:");
+
+        txtTelefono.setEditable(false);
+
+        txtCorreo.setEditable(false);
 
         jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -143,9 +155,13 @@ public class detallesPreventa extends javax.swing.JDialog {
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel27.setText("FORMA PAGO:");
 
+        txtFromaPago.setEditable(false);
+
         jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel28.setText("TIPO VENTA:");
+
+        txtTipoVenta.setEditable(false);
 
         BtnGenerarVenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/bienes.png"))); // NOI18N
         BtnGenerarVenta1.setText("IMPRIMIR VENTA");
@@ -281,11 +297,23 @@ public class detallesPreventa extends javax.swing.JDialog {
 
         jLabel30.setText("Iva:");
 
+        TxtSubtotalsinIva.setEditable(false);
+
         jLabel31.setText("Subtotal con 12%:");
+
+        TxtSubtotal.setEditable(false);
+
+        TxtSubtotalconIva.setEditable(false);
 
         jLabel32.setText("Total:");
 
+        TxtDescuento.setEditable(false);
+
         jLabel33.setText("Descuento:");
+
+        TxtIva.setEditable(false);
+
+        TxtTotal.setEditable(false);
 
         jLabel34.setText("Subtotal con 0%:");
 

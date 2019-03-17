@@ -65,7 +65,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="jLabel1" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -244,6 +244,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="txtcliente">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
@@ -255,6 +258,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtfechaRegistro">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
           <Properties>
@@ -284,10 +290,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtcedula">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="txtorden">
         </Component>
         <Component class="javax.swing.JTextField" name="txtdireccion">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
           <Properties>
@@ -308,8 +320,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelefono">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCorreo">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel26">
           <Properties>
@@ -330,6 +348,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtFromaPago">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel28">
           <Properties>
@@ -341,6 +362,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTipoVenta">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="BtnGenerarVenta1">
           <Properties>
@@ -475,6 +499,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtSubtotalsinIva">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
@@ -485,11 +512,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtSubtotal">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtSubtotalconIva">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
@@ -500,6 +533,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtDescuento">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
@@ -510,8 +546,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtIva">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtTotal">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel34">
           <Properties>
