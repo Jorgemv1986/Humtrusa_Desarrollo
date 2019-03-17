@@ -73,12 +73,6 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 
         jLabel1.setText("Numero De Orden:");
 
-        TxtNumeroOrden.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtNumeroOrdenActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,7 +136,7 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 //            setModal(false);
 //            view.setVisible(true);
 //            setModal(true);
-//Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())
+
         } catch (ClassNotFoundException | JRException ex) {
             Logger.getLogger(ImprimirOrdenVentas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -155,10 +149,6 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 
     }
 
-
-    private void TxtNumeroOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNumeroOrdenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtNumeroOrdenActionPerformed
 
     /**
      * @param args the command line arguments

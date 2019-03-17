@@ -7,12 +7,26 @@ package com.humtrusa.views.ventasRealizadas;
 
 import com.humtrusa.componentes.Tablas;
 import com.humtrusa.dao.CRUD;
+import com.humtrusa.dao.Conexion;
 import com.humtrusa.entidades.Join_Cabecera_ventas;
 import com.humtrusa.entidades.Join_Detalle_ventas;
+import com.humtrusa.views.ImprimirOrdenVentas;
 import com.humtrusa.views.principal.images;
 import java.awt.Color;
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -439,7 +453,33 @@ public class detallesPreventa extends javax.swing.JDialog {
     TxtTotal.setText(objeto.getTotal_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
     }
     private void BtnGenerarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVenta1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            Conexion con = new Conexion();
+
+            Connection conn = con.conectar();
+
+            JasperReport reporte;
+            String path = "src\\com\\humtrusa\\reportes\\report1.jasper";
+            Map parametro = new HashMap();
+            parametro.put("_id_cabecera", objeto.getId_cabecera_venta());
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
+            JasperViewer view = new JasperViewer(jprint, false);
+//            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+            view = new JasperViewer(jprint, false);
+            JDialog dialog = new JDialog(this);//the owner
+            dialog.setContentPane(view.getContentPane());
+            dialog.setSize(view.getSize());
+            dialog.setTitle("Orden de Venta ");
+//            dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(
+//                    getClass().getResource("URL IMG")));
+            dialog.setVisible(true);
+
+        } catch (ClassNotFoundException | JRException ex) {
+            Logger.getLogger(ImprimirOrdenVentas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_BtnGenerarVenta1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
