@@ -600,11 +600,12 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 crud.ActulizarStockVentas(listaStockVentas.get(i));
 
             }
-
+            this.setVisible(false);
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
-
+            
         }
+        
 
 
     }//GEN-LAST:event_BtnGenerarVentaActionPerformed

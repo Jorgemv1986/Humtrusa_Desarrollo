@@ -33,7 +33,7 @@ public class modificar_Usuario extends javax.swing.JDialog {
         jPanel1.setBackground(color);
         obj = u;
         llenarFormulario();
-        txtcontrasena.setEnabled(false);
+        txtcontrasena.setEnabled(true);
     }
 
     /**
