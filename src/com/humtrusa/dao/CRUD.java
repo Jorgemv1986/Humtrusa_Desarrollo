@@ -13,6 +13,7 @@ import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Join_Cabecera_ventas;
 import com.humtrusa.entidades.Join_Detalle_ventas;
 import com.humtrusa.entidades.Medidas_producto;
+import com.humtrusa.entidades.StockVentas;
 import com.humtrusa.entidades.Tipo_producto;
 import com.humtrusa.entidades.Usuario;
 import java.math.BigInteger;
@@ -768,5 +769,84 @@ public class CRUD {
             }
         }
         return lista;
+    }
+    
+    public ArrayList<StockVentas> listarStockVentas(Long id_cab) {
+        ArrayList<StockVentas> lista = new ArrayList<StockVentas>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ObtenerStockVentas(?)}");
+            prcProcedimientoAlmacenado.setLong(1, id_cab);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                StockVentas obj = EntidadesMappers.getStockVentasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    public void ActulizarStockVentas(StockVentas det) {
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call ActualizarStock(?,?)}");
+            pro.setLong(1, det.getId_producto());
+            pro.setLong(2, det.getCantidad());
+
+            pro.executeUpdate();
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+    
+    public Double obtenerIvaVentas(String query) {
+        Double iva = 0.00;
+        try {
+            conect = con.conectar();
+
+            java.sql.Statement st = conect.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            iva = rs.getDouble("iva");
+            conect.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return iva;
     }
 }

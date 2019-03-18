@@ -73,6 +73,9 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 
         jLabel1.setText("Numero De Orden:");
 
+        TxtNumeroOrden.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TxtNumeroOrden.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

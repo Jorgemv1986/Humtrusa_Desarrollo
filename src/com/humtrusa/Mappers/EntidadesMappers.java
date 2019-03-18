@@ -10,6 +10,7 @@ import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Join_Cabecera_ventas;
 import com.humtrusa.entidades.Join_Detalle_ventas;
 import com.humtrusa.entidades.Medidas_producto;
+import com.humtrusa.entidades.StockVentas;
 import com.humtrusa.entidades.Tipo_producto;
 import com.humtrusa.entidades.Usuario;
 import java.sql.ResultSet;
@@ -154,6 +155,19 @@ public class EntidadesMappers {
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));
             obj.setTotal(rs.getBigDecimal("TOTAL"));
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    public static StockVentas getStockVentasFromResultSet(ResultSet rs) {
+        StockVentas obj = new StockVentas();
+        try {
+            obj.setId_producto(rs.getLong("id_producto"));
+            obj.setCantidad(rs.getLong("cantidad"));
+
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }

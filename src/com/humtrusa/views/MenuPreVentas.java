@@ -11,6 +11,7 @@ import com.humtrusa.entidades.Cabecera_ventas;
 import com.humtrusa.entidades.Calcular_totales;
 import com.humtrusa.entidades.Detalle_ventas;
 import com.humtrusa.entidades.JoinProductos;
+import com.humtrusa.entidades.StockVentas;
 import com.humtrusa.entidades.Usuario;
 import com.humtrusa.views.principal.images;
 import java.awt.Color;
@@ -25,8 +26,10 @@ import javax.swing.JOptionPane;
 public class MenuPreVentas extends javax.swing.JDialog {
 
     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
+    ArrayList<StockVentas> listaStockVentas = null;
+    Detalle_ventas objeto1 = new Detalle_ventas();
     CRUD crud = new CRUD();
-    JoinProductos obj = new JoinProductos();
+    JoinProductos objProd = new JoinProductos();
     Calcular_totales ct = new Calcular_totales();
     Usuario u = new Usuario();
     Cabecera_ventas objeto = new Cabecera_ventas();
@@ -168,7 +171,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel23)
                             .addComponent(jLabel24)
@@ -445,21 +448,20 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(CbxTipoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CbxFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE))
+                            .addComponent(CbxFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnGenerarVenta)
-                        .addGap(112, 112, 112)))
+                        .addComponent(BtnGenerarVenta)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -473,8 +475,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BtnGenerarVenta)))
+                        .addComponent(BtnGenerarVenta)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -588,6 +590,17 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 dv.setId_cabecera_venta(Long.parseLong(id_det));
 
             }
+
+            listaStockVentas = crud.listarStockVentas(Long.parseLong(id_cab));
+
+            for (int i = 0; i < listaStockVentas.size(); i++) {
+                System.out.println("id_producto " + listaStockVentas.get(i).getId_producto());
+                System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
+
+                crud.ActulizarStockVentas(listaStockVentas.get(i));
+
+            }
+
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
 
@@ -603,38 +616,45 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
 
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
+        if (!TxtProdNombre.getText().equals("") && !TxtProdtotal.getText().equals("")) {
+            if (objProd.getStock() < Long.valueOf(TxtProdCantidad.getText())) {
+                String msg = "Stock disponible: " + objProd.getStock();
 
-        Detalle_ventas RegDetalleVentas = new Detalle_ventas();
-        RegDetalleVentas.setId_producto(obj.getId_producto());
-        RegDetalleVentas.setNombre_producto(obj.getNombre());
-        RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));
-        RegDetalleVentas.setPrecio(BigDecimal.valueOf(Double.parseDouble(TxtProdPrecio.getText())));
-        RegDetalleVentas.setSubtotal(BigDecimal.valueOf(Double.parseDouble(TxtProdSubtotal.getText())));
-        RegDetalleVentas.setDescuento(BigDecimal.valueOf(Double.parseDouble(TxtProdDescuento.getText())));
-        RegDetalleVentas.setIva(BigDecimal.valueOf(Double.parseDouble(TxtProdIva.getText())));
-        RegDetalleVentas.setTotal(BigDecimal.valueOf(Double.parseDouble(TxtProdtotal.getText())));
+                JOptionPane.showMessageDialog(rootPane, msg);
+            } else {
 
-        ListarDetalle.add(RegDetalleVentas);
+                Detalle_ventas RegDetalleVentas = new Detalle_ventas();
+                RegDetalleVentas.setId_producto(objProd.getId_producto());
+                RegDetalleVentas.setNombre_producto(objProd.getNombre());
+                RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));
+                RegDetalleVentas.setPrecio(objeto1.getPrecio());
+                RegDetalleVentas.setSubtotal(objeto1.getSubtotal());
+                RegDetalleVentas.setDescuento(objeto1.getDescuento());
+                RegDetalleVentas.setIva(objeto1.getIva());
+                RegDetalleVentas.setTotal(objeto1.getTotal());
+
+                ListarDetalle.add(RegDetalleVentas);
 
 //        for (int i = 0; i < ListarDetalle.size(); i++) {
 //           System.out.println(ListarDetalle.get(i).getNombre_producto());
 //        }
-        Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
+                Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
 //
 
-        TxtProdNombre.setText("");
-        TxtProdPrecio.setText("");
-        TxtProdCantidad.setText("");
-        TxtProdPrecio.setText("");
-        TxtProdSubtotal.setText("");
-        TxtProdDescuento.setText("");
-        TxtProdIva.setText("");
-        TxtProdtotal.setText("");
-        TxtDescuentoPorcentaje.setText("");
-        TxtDescuentoPorcentaje.setEnabled(false);
+                TxtProdNombre.setText("");
+                TxtProdPrecio.setText("");
+                TxtProdCantidad.setText("");
+                TxtProdPrecio.setText("");
+                TxtProdSubtotal.setText("");
+                TxtProdDescuento.setText("");
+                TxtProdIva.setText("");
+                TxtProdtotal.setText("");
+                TxtDescuentoPorcentaje.setText("");
+                TxtDescuentoPorcentaje.setEnabled(false);
 
-        CalcularDetalle();
-
+                CalcularDetalle();
+            }
+        }
     }//GEN-LAST:event_BtnAddItenActionPerformed
 
     private void TxtProdCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyTyped
@@ -646,56 +666,75 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     private void TxtProdCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyReleased
 
-        Double iva_valor = 0.12;
+        String query = " SELECT `iva`.`iva` AS 'iva' FROM `iva` WHERE `iva`.`estado`  = 'ACTIVO' ";
 
-        BigDecimal iva = new BigDecimal("0.00");
+        Double ivaVentas = crud.obtenerIvaVentas(query);
+
+        BigDecimal iva = new BigDecimal(ivaVentas);
 
         if (TxtProdCantidad.equals(" ") == false && TxtProdCantidad.getText().matches("[0-9]+[0-9]*")) {
 
-            String cant = TxtProdCantidad.getText();
-            BigDecimal cantidad = new BigDecimal(cant);
+            if (objProd.getStock() < Long.valueOf(TxtProdCantidad.getText())) {
 
-            String pre = TxtProdPrecio.getText();
-            BigDecimal precio = new BigDecimal(pre);
+                String msg = "Stock disponible: " + objProd.getStock();
 
-            BigDecimal subtotal = cantidad.multiply(precio);
+                JOptionPane.showMessageDialog(rootPane, msg);
 
-            TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            } else {
 
-            if (obj.getIva().equals("S")) {
+                BigDecimal cantidad = new BigDecimal(TxtProdCantidad.getText());
+                BigDecimal precio = new BigDecimal(TxtProdPrecio.getText());
 
-                BigDecimal iva_val = new BigDecimal(iva_valor);
-                iva = iva_val.multiply(subtotal);
+                BigDecimal subtotal = cantidad.multiply(precio);
 
-                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
+                if (objProd.getIva().equals("S")) {
+
+                    iva = iva.multiply(subtotal);
+
+                    TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                }
+
+                if (objProd.getIva().equals("N")) {
+
+                    iva = BigDecimal.valueOf(00.00);
+
+                    TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                }
+
+                BigDecimal total = subtotal.add(iva);
+
+                TxtProdtotal.setText(total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
+                objeto1.setPrecio(precio);
+                objeto1.setSubtotal(subtotal);
+                objeto1.setDescuento(BigDecimal.valueOf(0.00));
+                objeto1.setIva(iva);
+                objeto1.setTotal(total);
+
+                TxtDescuentoPorcentaje.setEnabled(true);
+                TxtDescuentoPorcentaje.setText("0");
+                TxtProdDescuento.setText("0.00");
+
             }
-
-            if (obj.getIva().equals("N")) {
-
-                iva = BigDecimal.valueOf(00.00);
-
-                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            }
-
-            BigDecimal total = subtotal.add(iva);
-
-            TxtProdtotal.setText(total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-
-            TxtDescuentoPorcentaje.setEnabled(true);
-            TxtDescuentoPorcentaje.setText("0");
-            TxtProdDescuento.setText("0.00");
-
         }
 
 
     }//GEN-LAST:event_TxtProdCantidadKeyReleased
     public void CalcularDetalle() {
+
+        String query = " SELECT `iva`.`iva` AS 'iva' FROM `iva` WHERE `iva`.`estado`  = 'ACTIVO' ";
+
+        Double ivaVentas = crud.obtenerIvaVentas(query);
+
         BigDecimal TotalSubConIva = new BigDecimal("0.00");
         BigDecimal TotalSubSinIva = new BigDecimal("0.00");
         BigDecimal TotalSubTotal = new BigDecimal("0.00");
         BigDecimal TotalIva = new BigDecimal("0.00");
         BigDecimal TotalDescuento = new BigDecimal("0.00");
         BigDecimal Total = new BigDecimal("0.00");
+        BigDecimal Iva = new BigDecimal(ivaVentas);
 
         for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
 
@@ -707,7 +746,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             BigDecimal Subtotal = Cantidad.multiply(Precio);
             System.out.println("Subtotal " + Subtotal);
             BigDecimal Descuento = ListarDetalle.get(i).getDescuento();
-            BigDecimal Iva = ListarDetalle.get(i).getIva();
+
             TotalDescuento = TotalDescuento.add(Descuento);
 
             TxtSubtotalconIva.setText("0.00");
@@ -715,19 +754,22 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             if ("0.0".equals(ListarDetalle.get(i).getIva().toEngineeringString())) {
 
-                System.out.println("sin_iva " + Iva);
                 TotalSubSinIva = TotalSubSinIva.add(Subtotal);
 
             }
             if (!"0.0".equals(ListarDetalle.get(i).getIva().toEngineeringString())) {
 
-                System.out.println("con_iva " + Iva);
-                TotalIva = TotalIva.add(Iva);
+                TotalIva = TotalIva.add(Subtotal.multiply(Iva));
                 TotalSubConIva = TotalSubConIva.add(Subtotal);
+                System.out.println("con_iva " + TotalIva);
 
             }
 
-            Total = Total.add(Subtotal.subtract(Descuento).add(Iva));
+            System.out.println("descuento total " + TotalDescuento);
+
+            Total = Total.add(Subtotal.add(Subtotal.multiply(Iva)).subtract(Descuento));
+
+            System.out.println("total " + Total);
 
         }
 
@@ -739,12 +781,12 @@ public class MenuPreVentas extends javax.swing.JDialog {
         ct.setIva(TotalIva);
         ct.setDescuento(TotalDescuento);
         ct.setTotal(Total);
-        TxtSubtotalconIva.setText(TotalSubConIva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
-        TxtSubtotalsinIva.setText(TotalSubSinIva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
-        TxtSubtotal.setText(TotalSubTotal.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtSubtotalconIva.setText(TotalSubConIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        TxtSubtotalsinIva.setText(TotalSubSinIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        TxtSubtotal.setText(TotalSubTotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         TxtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtDescuento.setText(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
-        TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtDescuento.setText(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 
     }
 
@@ -762,20 +804,20 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         elegirProductos hp = new elegirProductos(new javax.swing.JFrame(), true);
         hp.setVisible(true);
-        obj = hp.getProducto();
-        if (obj != null) {
+        objProd = hp.getProducto();
+        if (objProd != null) {
             switch (hp.getPos()) {
                 case 1:
-                    TxtProdNombre.setText(obj.getNombre());
-                    TxtProdPrecio.setText(obj.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    TxtProdNombre.setText(objProd.getNombre());
+                    TxtProdPrecio.setText(objProd.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
                     break;
                 case 2:
-                    TxtProdNombre.setText(obj.getNombre());
-                    TxtProdPrecio.setText(obj.getPrecio_Vent_B().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    TxtProdNombre.setText(objProd.getNombre());
+                    TxtProdPrecio.setText(objProd.getPrecio_Vent_B().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
                     break;
                 case 3:
-                    TxtProdNombre.setText(obj.getNombre());
-                    TxtProdPrecio.setText(obj.getPrecio_Vent_C().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    TxtProdNombre.setText(objProd.getNombre());
+                    TxtProdPrecio.setText(objProd.getPrecio_Vent_C().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
                     break;
 
                 default:
@@ -823,19 +865,47 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     private void TxtDescuentoPorcentajeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtDescuentoPorcentajeKeyReleased
 
+        String query = " SELECT `iva`.`iva` AS 'iva' FROM `iva` WHERE `iva`.`estado`  = 'ACTIVO' ";
+
+        Double ivaVentas = crud.obtenerIvaVentas(query);
+
+        BigDecimal iva = new BigDecimal(ivaVentas);
+
         if (TxtDescuentoPorcentaje.equals(" ") == false && TxtDescuentoPorcentaje.getText().matches("[0-9]+[0-9]*")) {
 
-            BigDecimal base = new BigDecimal(TxtProdSubtotal.getText());
+            BigDecimal base = objeto1.getSubtotal();
             BigDecimal pct = new BigDecimal(TxtDescuentoPorcentaje.getText());
             BigDecimal porcentaje = base.multiply(pct).divide(new BigDecimal(100));
 
+            BigDecimal cantidad = new BigDecimal(TxtProdCantidad.getText());
+            BigDecimal precio = new BigDecimal(TxtProdPrecio.getText());
+            BigDecimal subtotal = cantidad.multiply(precio);
+
+            if (objProd.getIva().equals("S")) {
+
+                iva = iva.multiply(subtotal);
+
+                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            }
+
+            if (objProd.getIva().equals("N")) {
+
+                iva = BigDecimal.valueOf(00.00);
+
+                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            }
+
+            BigDecimal total = subtotal.add(iva).subtract(porcentaje);
+
             TxtProdDescuento.setText(porcentaje.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 
-            BigDecimal total = new BigDecimal(TxtProdtotal.getText());
+            TxtProdtotal.setText(total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 
-            BigDecimal TotalnenosDescuento = (total.subtract(porcentaje));
-
-            TxtProdtotal.setText(TotalnenosDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            objeto1.setPrecio(precio);
+            objeto1.setSubtotal(subtotal);
+            objeto1.setDescuento(porcentaje);
+            objeto1.setIva(iva);
+            objeto1.setTotal(total);
 
         }
 
