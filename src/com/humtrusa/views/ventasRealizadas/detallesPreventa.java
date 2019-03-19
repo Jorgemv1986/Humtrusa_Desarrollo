@@ -464,10 +464,10 @@ public class detallesPreventa extends javax.swing.JDialog {
             parametro.put("_id_cabecera", objeto.getId_cabecera_venta());
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
-            JasperViewer view = new JasperViewer(jprint, false);
+//            JasperViewer view = new JasperViewer(jprint, false);
 //            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-            view = new JasperViewer(jprint, false);
+            JasperViewer view = new JasperViewer(jprint, false);
             JDialog dialog = new JDialog(this);//the owner
             dialog.setContentPane(view.getContentPane());
             dialog.setSize(view.getSize());
