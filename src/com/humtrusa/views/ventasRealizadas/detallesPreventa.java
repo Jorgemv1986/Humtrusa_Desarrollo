@@ -459,10 +459,11 @@ public class detallesPreventa extends javax.swing.JDialog {
             Connection conn = con.conectar();
 
             JasperReport reporte;
-            String path = "src\\com\\humtrusa\\reportes\\report1.jasper";
+//            String path = "src/com/humtrusa/reportes/report1.jasper";
             Map parametro = new HashMap();
             parametro.put("_id_cabecera", objeto.getId_cabecera_venta());
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+//            reporte = (JasperReport) JRLoader.loadObjectFromFile();
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/com/humtrusa/reportes/report1.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
 //            JasperViewer view = new JasperViewer(jprint, false);
 //            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

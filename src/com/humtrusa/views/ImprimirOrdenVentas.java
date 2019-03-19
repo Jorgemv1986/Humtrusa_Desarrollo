@@ -148,16 +148,16 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
             Connection conn = con.conectar();
 
             JasperReport reporte;
-            String path = "src\\com\\humtrusa\\reportes\\report1.jasper";
+//            String path = "src/com/humtrusa/reportes/report1.jasper";
             Map parametro = new HashMap();
-//            parametro.put("_id_cabecera", Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())));
             parametro.put("_id_cabecera", obj.getId_cabecera_venta());
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+//            reporte = (JasperReport) JRLoader.loadObjectFromFile();
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/com/humtrusa/reportes/report1.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
-            JasperViewer view = new JasperViewer(jprint, false);
+//            JasperViewer view = new JasperViewer(jprint, false);
 //            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-            view = new JasperViewer(jprint, false);
+            JasperViewer view = new JasperViewer(jprint, false);
             JDialog dialog = new JDialog(this);//the owner
             dialog.setContentPane(view.getContentPane());
             dialog.setSize(view.getSize());
@@ -166,15 +166,9 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 //                    getClass().getResource("URL IMG")));
             dialog.setVisible(true);
 
-//            view.setTitle("My Reports");
-//            setModal(false);
-//            view.setVisible(true);
-//            setModal(true);
-
         } catch (ClassNotFoundException | JRException ex) {
             Logger.getLogger(ImprimirOrdenVentas.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
