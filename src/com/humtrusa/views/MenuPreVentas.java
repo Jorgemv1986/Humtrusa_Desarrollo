@@ -306,6 +306,11 @@ public class MenuPreVentas extends javax.swing.JDialog {
         );
 
         CbxFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "Contado", "Credito" }));
+        CbxFormaPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbxFormaPagoActionPerformed(evt);
+            }
+        });
 
         CbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "Factura", "Nota de venta" }));
 
@@ -927,6 +932,26 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void CbxFormaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxFormaPagoActionPerformed
+       int combo = CbxFormaPago.getSelectedIndex();
+       switch(combo){
+           case 0:
+               TxtDescuentoPorcentaje.setText("0");
+               break;
+           case 1:
+               TxtDescuentoPorcentaje.setText("5");
+               break;
+           case 2:
+               TxtDescuentoPorcentaje.setText("0");
+               break;
+           default:
+               TxtDescuentoPorcentaje.setText("0");
+               break;
+       }
+               
+           
+    }//GEN-LAST:event_CbxFormaPagoActionPerformed
 
     /**
      * @param args the command line arguments
