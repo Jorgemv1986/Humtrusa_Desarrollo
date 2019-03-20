@@ -94,6 +94,12 @@ public class Login_humtrusa extends javax.swing.JFrame {
         lblSesion2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSesion2.setText("CONTRASEÑA:");
 
+        txtusuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtusuarioKeyTyped(evt);
+            }
+        });
+
         btnIngresar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +119,9 @@ public class Login_humtrusa extends javax.swing.JFrame {
         txtcontra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcontraKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcontraKeyTyped(evt);
             }
         });
 
@@ -194,6 +203,24 @@ public class Login_humtrusa extends javax.swing.JFrame {
            inicio();       
        }
     }//GEN-LAST:event_txtcontraKeyPressed
+
+    private void txtusuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyTyped
+        char car = evt.getKeyChar();
+       if (txtusuario.getText().length() >= 10) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtusuarioKeyTyped
+
+    private void txtcontraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontraKeyTyped
+        
+       if (txtcontra.getText().length() >= 10) {
+            evt.consume();
+        }
+       
+    }//GEN-LAST:event_txtcontraKeyTyped
 
     /**
      * @param args the command line arguments

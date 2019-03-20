@@ -196,7 +196,7 @@ public class Humtrusa_usuarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Ingreso_Usuario IP = new Ingreso_Usuario(new javax.swing.JFrame(), true);
+        Ingreso_Usuario IP = new Ingreso_Usuario(new javax.swing.JFrame(), true,2);
         this.dispose();
         IP.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -229,7 +229,7 @@ public class Humtrusa_usuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_tableMousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        usuariosInactivos ip = new usuariosInactivos(new javax.swing.JFrame(), true);
+        usuariosInactivos ip = new usuariosInactivos(new javax.swing.JFrame(), true,2);
         this.dispose();
         ip.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed

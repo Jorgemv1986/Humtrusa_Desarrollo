@@ -136,7 +136,7 @@ public class Agregar_Clase_producto extends javax.swing.JDialog {
        Clase_producto cp = new Clase_producto();
        cp.setNombre_clase(txtClase.getText());
        valor = crud.agregarComponenteClase(1, cp);
-       if(valor=="CLASE AGREGADA"){
+       if("CLASE AGREGADA".equals(valor)){
            JOptionPane.showMessageDialog(this, valor);
            this.setVisible(false);
        }else{

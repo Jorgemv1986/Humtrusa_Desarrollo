@@ -7,6 +7,7 @@ package com.humtrusa.views.clientes;
 
 import com.humtrusa.dao.CRUD;
 import com.humtrusa.entidades.Usuario;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,7 @@ public class activar_Usuario extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
     Usuario obj = new Usuario();
+     private final Color color = new Color(63, 63, 220);
 
     public activar_Usuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -27,6 +29,8 @@ public class activar_Usuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        jLabel1.setForeground(Color.WHITE);
+        jPanel1.setBackground(color);
         obj = u;
         llenarFormulario();
         txtcontrasena.setEnabled(false);
@@ -89,12 +93,23 @@ public class activar_Usuario extends javax.swing.JDialog {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("CEDULA:");
 
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
+
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("NOMBRES:");
 
         txtNombres.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombresFocusLost(evt);
+            }
+        });
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
             }
         });
 
@@ -106,9 +121,20 @@ public class activar_Usuario extends javax.swing.JDialog {
                 txtApellidosFocusLost(evt);
             }
         });
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosKeyTyped(evt);
+            }
+        });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("TELEFONO:");
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("DIRECCION:");
@@ -125,6 +151,8 @@ public class activar_Usuario extends javax.swing.JDialog {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("CORREO:");
 
+        btnGuardar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardar.png"))); // NOI18N
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +160,8 @@ public class activar_Usuario extends javax.swing.JDialog {
             }
         });
 
+        btnCerrar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/error.png"))); // NOI18N
         btnCerrar.setText("CERRAR");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +169,8 @@ public class activar_Usuario extends javax.swing.JDialog {
             }
         });
 
+        ACTIVAR.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        ACTIVAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comprobado (1).png"))); // NOI18N
         ACTIVAR.setText("ACTIVAR");
         ACTIVAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,13 +189,13 @@ public class activar_Usuario extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(ACTIVAR, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addContainerGap()
+                .addComponent(ACTIVAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCerrar)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -230,11 +262,11 @@ public class activar_Usuario extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbxTipoUsuario)
                         .addGap(4, 4, 4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ACTIVAR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCerrar)
+                    .addComponent(ACTIVAR))
                 .addGap(27, 27, 27))
         );
 
@@ -288,7 +320,7 @@ public void llenarFormulario() {
     }
 
     public void regresarUsuariosInactivs() {
-        usuariosInactivos IP = new usuariosInactivos(new javax.swing.JFrame(), true);
+        usuariosInactivos IP = new usuariosInactivos(new javax.swing.JFrame(), true,2);
         this.dispose();
         IP.setVisible(true);
     }
@@ -318,6 +350,42 @@ public void llenarFormulario() {
     private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
         txtDireccion.setText(txtDireccion.getText().toUpperCase());
     }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        char car = evt.getKeyChar();
+        if (txtCedula.getText().length() >= 10) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+       char car = evt.getKeyChar();
+       if (txtTelefono.getText().length() >= 10) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+       char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidosKeyTyped
 
     /**
      * @param args the command line arguments

@@ -129,7 +129,7 @@ public class Agregar_Tipo_producto extends javax.swing.JDialog {
         Tipo_producto cp = new Tipo_producto();
         cp.setNombre_tipo(txtTipo.getText());
         valor = crud.agregarComponenteTipo(2, cp);
-        if(valor=="TIPO AGREGADO"){
+        if("TIPO AGREGADO".equals(valor)){
            JOptionPane.showMessageDialog(this, valor);
            this.setVisible(false);
        }else{

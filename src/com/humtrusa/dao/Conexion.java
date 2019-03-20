@@ -10,7 +10,7 @@ public class Conexion {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_pis2", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_pis2", "root", "itsgg");
 
             System.out.println("Conectado");
 

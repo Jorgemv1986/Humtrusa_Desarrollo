@@ -126,7 +126,7 @@ public class Agregar_UnidadMedida_producto extends javax.swing.JDialog {
         Medidas_producto cp = new Medidas_producto();
         cp.setNombre_medida(txtMedida.getText());
         valor = crud.agregarComponenteMedida(3, cp);
-        if(valor=="MEDIDA AGREGADA"){
+        if("MEDIDA AGREGADA".equals(valor)){
            JOptionPane.showMessageDialog(this, valor);
            this.setVisible(false);
        }else{

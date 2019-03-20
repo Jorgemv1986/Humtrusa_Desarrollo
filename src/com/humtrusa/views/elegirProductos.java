@@ -91,8 +91,6 @@ public class elegirProductos extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         cbxtipoClient = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
@@ -147,6 +145,7 @@ public class elegirProductos extends javax.swing.JDialog {
 
         jLabel5.setText("BUSQUEDA:");
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/mas.png"))); // NOI18N
         jButton2.setText("NUEVO PRODUCTO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,24 +172,11 @@ public class elegirProductos extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(table);
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cancelar.png"))); // NOI18N
         jButton3.setText("CERRAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("PRODUCTOS INACTIVO");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("MODIFICAR PRODUCTOS");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
             }
         });
 
@@ -261,11 +247,7 @@ public class elegirProductos extends javax.swing.JDialog {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
+                        .addGap(57, 57, 57)
                         .addComponent(jButton3)
                         .addGap(65, 65, 65))))
         );
@@ -315,12 +297,10 @@ public class elegirProductos extends javax.swing.JDialog {
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -334,9 +314,9 @@ public class elegirProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_jcbMedidaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Ingreso_Productos IP = new Ingreso_Productos(new javax.swing.JFrame(), true);
-        this.dispose();
+        Ingreso_Productos IP = new Ingreso_Productos(new javax.swing.JFrame(), true,4);
         IP.setVisible(true);
+        limpiarTabla();
     }//GEN-LAST:event_jButton2ActionPerformed
     public void limpiarTabla() {
         listapro.clear();
@@ -393,31 +373,9 @@ public class elegirProductos extends javax.swing.JDialog {
         Tablas.listarTodosProductos(listax, table);
     }//GEN-LAST:event_jcbIvaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        productosInactivos ip = new productosInactivos(new javax.swing.JFrame(), true);
-        this.dispose();
-        ip.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int i = 0;
-
-        int rowindex = table.getSelectedRow();
-        if (rowindex > -1) {
-            i = table.getSelectedRow();
-            objeto = devuelveObjeto(table.getValueAt(i, 0).toString(), listapro);
-            if (objeto != null) {
-                modificar_productos Man = new modificar_productos(new javax.swing.JFrame(), true, objeto);
-                this.setVisible(false);
-                Man.setVisible(true);
-                limpiarTabla();
-            }
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cbxtipoClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxtipoClientActionPerformed
         pos = cbxtipoClient.getSelectedIndex();
@@ -494,8 +452,6 @@ public class elegirProductos extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

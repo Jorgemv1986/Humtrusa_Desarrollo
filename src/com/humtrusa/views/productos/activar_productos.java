@@ -13,6 +13,7 @@ import com.humtrusa.entidades.Clase_producto;
 import com.humtrusa.entidades.JoinProductos;
 import com.humtrusa.entidades.Medidas_producto;
 import com.humtrusa.entidades.Tipo_producto;
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class activar_productos extends javax.swing.JDialog {
     Long id_clase = null, id_tipo = null, id_medida = null;
     String error = "", IVA = "";
     JoinProductos obj = new JoinProductos();
+    private final Color color = new Color(63, 63, 220);
 
     public activar_productos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -40,6 +42,8 @@ public class activar_productos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        jLabel1.setForeground(Color.WHITE);
+        jPanel1.setBackground(color);
         obj = obj1;
         llenarFormulario();
         llenarComboBoxProductos();
@@ -98,21 +102,46 @@ public class activar_productos extends javax.swing.JDialog {
         cbxClase = new javax.swing.JComboBox<>();
         cbxTipo = new javax.swing.JComboBox<>();
         cbxMedida = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnInactivar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        txtcompraRef.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcompraRefKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("COMPRA ULT.");
+
+        txtCompraUlt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCompraUltKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("PRECIO VENTA A:");
 
+        txtPrecioventaA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioventaAKeyTyped(evt);
+            }
+        });
+
         jLabel6.setText("PRECIO VENTA B:");
+
+        txtprecioventaB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioventaBKeyTyped(evt);
+            }
+        });
 
         jLabel7.setText("PRECIO VENTA C:");
 
@@ -127,6 +156,18 @@ public class activar_productos extends javax.swing.JDialog {
         });
 
         jLabel12.setText("CANTIDAD:");
+
+        txtStck.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStckKeyTyped(evt);
+            }
+        });
+
+        txtprecioventaC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioventaCKeyTyped(evt);
+            }
+        });
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("CLASE:");
@@ -158,12 +199,10 @@ public class activar_productos extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MODIFICAR Y ACTIVAR PRODUCTO");
-
         jLabel2.setText("PRODUCTO: ");
 
+        btnGuardar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardar.png"))); // NOI18N
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +210,8 @@ public class activar_productos extends javax.swing.JDialog {
             }
         });
 
+        btnCancelar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/error.png"))); // NOI18N
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +227,8 @@ public class activar_productos extends javax.swing.JDialog {
 
         jLabel3.setText("COMPRA REF.");
 
+        btnInactivar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnInactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comprobado (1).png"))); // NOI18N
         btnInactivar.setText("ACTIVAR");
         btnInactivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,11 +236,27 @@ public class activar_productos extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("MODIFICAR Y ACTIVAR PRODUCTO");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,21 +302,23 @@ public class activar_productos extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtprecioventaC, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStck, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(txtStck, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(64, 64, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInactivar)
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardar)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelar)
-                .addGap(42, 42, 42))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -324,12 +385,12 @@ public class activar_productos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtStck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(btnCancelar)
+                    .addComponent(btnInactivar)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -424,7 +485,7 @@ public class activar_productos extends javax.swing.JDialog {
 
     public void llamarHumtrusaProductos() {
         this.dispose();
-        elegirProductos hp = new elegirProductos(new javax.swing.JFrame(), true);
+        productosInactivos hp = new productosInactivos(new javax.swing.JFrame(), true);
         hp.setVisible(true);
     }
     public void llamarProductosInactivos(){
@@ -450,6 +511,61 @@ public class activar_productos extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_btnInactivarActionPerformed
+
+    private void txtcompraRefKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcompraRefKeyTyped
+       if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtcompraRef.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtcompraRefKeyTyped
+
+    private void txtCompraUltKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompraUltKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtCompraUlt.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCompraUltKeyTyped
+
+    private void txtPrecioventaAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioventaAKeyTyped
+      if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtPrecioventaA.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioventaAKeyTyped
+
+    private void txtprecioventaBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioventaBKeyTyped
+       if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtprecioventaB.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtprecioventaBKeyTyped
+
+    private void txtprecioventaCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioventaCKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtprecioventaC.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtprecioventaCKeyTyped
+
+    private void txtStckKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStckKeyTyped
+        char car = evt.getKeyChar();
+       if (txtStck.getText().length() >= 9) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStckKeyTyped
 
     /**
      * @param args the command line arguments
@@ -514,6 +630,7 @@ public class activar_productos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtCompraUlt;
     private javax.swing.JTextField txtPrecioventaA;
     private javax.swing.JTextField txtStck;

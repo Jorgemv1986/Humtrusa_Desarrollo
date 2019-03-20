@@ -112,11 +112,35 @@ public class modificar_productos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        txtcompraRef.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcompraRefKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("COMPRA ULT.");
+
+        txtCompraUlt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCompraUltKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("PRECIO VENTA A:");
 
+        txtPrecioventaA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioventaAKeyTyped(evt);
+            }
+        });
+
         jLabel6.setText("PRECIO VENTA B:");
+
+        txtprecioventaB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioventaBKeyTyped(evt);
+            }
+        });
 
         jLabel7.setText("PRECIO VENTA C:");
 
@@ -131,6 +155,18 @@ public class modificar_productos extends javax.swing.JDialog {
         });
 
         jLabel12.setText("CANTIDAD:");
+
+        txtStck.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStckKeyTyped(evt);
+            }
+        });
+
+        txtprecioventaC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioventaCKeyTyped(evt);
+            }
+        });
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("CLASE:");
@@ -455,15 +491,70 @@ public class modificar_productos extends javax.swing.JDialog {
     }//GEN-LAST:event_txtnombreFocusLost
 
     private void btnInactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInactivarActionPerformed
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Producto "+obj.getNombre()+" ?", "", JOptionPane.YES_NO_OPTION);
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Producto " + obj.getNombre() + " ?", "", JOptionPane.YES_NO_OPTION);
         if (r == JOptionPane.YES_OPTION) {
             Long idPro = obj.getId_producto();
-            crud.inactivarProducto(1,idPro);
+            crud.inactivarProducto(1, idPro);
             llamarHumtrusaProductos();
         } else {
 
         }
     }//GEN-LAST:event_btnInactivarActionPerformed
+
+    private void txtcompraRefKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcompraRefKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtcompraRef.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtcompraRefKeyTyped
+
+    private void txtCompraUltKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompraUltKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtCompraUlt.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCompraUltKeyTyped
+
+    private void txtPrecioventaAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioventaAKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtPrecioventaA.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioventaAKeyTyped
+
+    private void txtprecioventaBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioventaBKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtprecioventaB.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtprecioventaBKeyTyped
+
+    private void txtprecioventaCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioventaCKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtprecioventaC.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtprecioventaCKeyTyped
+
+    private void txtStckKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStckKeyTyped
+        char car = evt.getKeyChar();
+        if (txtStck.getText().length() >= 9) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStckKeyTyped
 
     /**
      * @param args the command line arguments

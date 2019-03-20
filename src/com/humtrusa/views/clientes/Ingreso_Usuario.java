@@ -7,6 +7,7 @@ package com.humtrusa.views.clientes;
 
 import com.humtrusa.dao.CRUD;
 import com.humtrusa.entidades.Usuario;
+import com.humtrusa.views.elegir_usuarios;
 import com.humtrusa.views.principal.images;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -89,12 +90,23 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("CEDULA:");
 
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
+
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("NOMBRES:");
 
         txtNombres.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombresFocusLost(evt);
+            }
+        });
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
             }
         });
 
@@ -106,9 +118,20 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
                 txtApellidosFocusLost(evt);
             }
         });
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosKeyTyped(evt);
+            }
+        });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("TELEFONO:");
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("DIRECCION:");
@@ -121,6 +144,12 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("CONTRASEÑA:");
+
+        txtcontrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcontrasenaKeyTyped(evt);
+            }
+        });
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("CORREO:");
@@ -262,7 +291,14 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
         valor=crud.ingresoUsuario(u);
         if("REGISTRO CON EXITO".equals(valor)){
             JOptionPane.showMessageDialog(this, valor);
-            this.setVisible(false);
+            if(varCerr==2){
+                this.setVisible(false);
+                Humtrusa_usuarios ho = new Humtrusa_usuarios(new javax.swing.JFrame(), rootPaneCheckingEnabled);
+                ho.setVisible(rootPaneCheckingEnabled);
+            }else{
+                this.setVisible(false);
+            }
+            
         }else{
             JOptionPane.showMessageDialog(this, valor);
         }
@@ -272,12 +308,15 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         if(varCerr==1){
         this.dispose();
-        }else{
+        }
+        if(varCerr==2){
         this.setVisible(false);
-        Humtrusa_usuarios rr = new Humtrusa_usuarios(new javax.swing.JFrame(),true);
+        Humtrusa_usuarios rr = new Humtrusa_usuarios(new javax.swing.JFrame(),rootPaneCheckingEnabled);
         rr.setVisible(rootPaneCheckingEnabled);
         }
-               
+        if(varCerr==3){
+        this.dispose();
+        }      
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -295,6 +334,48 @@ public class Ingreso_Usuario extends javax.swing.JDialog {
     private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
         txtDireccion.setText(txtDireccion.getText().toUpperCase());
     }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+       char car = evt.getKeyChar();
+       if (txtCedula.getText().length() >= 10) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char car = evt.getKeyChar();
+        if (txtTelefono.getText().length() >= 10) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtcontrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontrasenaKeyTyped
+       if (txtcontrasena.getText().length() >= 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtcontrasenaKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+       char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidosKeyTyped
 
     /**
      * @param args the command line arguments

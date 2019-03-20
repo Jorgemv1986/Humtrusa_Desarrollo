@@ -451,9 +451,10 @@
         <Component class="javax.swing.JComboBox" name="CbxFormaPago">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="contado"/>
-                <StringItem index="1" value="credito"/>
+              <StringArray count="3">
+                <StringItem index="0" value="TODOS"/>
+                <StringItem index="1" value="Contado"/>
+                <StringItem index="2" value="Credito"/>
               </StringArray>
             </Property>
           </Properties>
@@ -464,9 +465,10 @@
         <Component class="javax.swing.JComboBox" name="CbxTipoVenta">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Factura"/>
-                <StringItem index="1" value="Nota de venta"/>
+              <StringArray count="3">
+                <StringItem index="0" value="TODOS"/>
+                <StringItem index="1" value="Factura"/>
+                <StringItem index="2" value="Nota de venta"/>
               </StringArray>
             </Property>
           </Properties>

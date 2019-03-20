@@ -127,13 +127,43 @@ public class Ingreso_Productos extends javax.swing.JDialog {
 
         jLabel3.setText("COMPRA REF.");
 
+        txtcompraRef.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcompraRefKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("COMPRA ULT.");
+
+        txtCompraUlt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCompraUltKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("PRECIO VENTA A:");
 
+        txtPrecioventaA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioventaAKeyTyped(evt);
+            }
+        });
+
         jLabel6.setText("PRECIO VENTA B:");
 
+        txtprecioventaB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioventaBKeyTyped(evt);
+            }
+        });
+
         jLabel7.setText("PRECIO VENTA C:");
+
+        txtprecioventaC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioventaCKeyTyped(evt);
+            }
+        });
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("CLASE:");
@@ -194,6 +224,12 @@ public class Ingreso_Productos extends javax.swing.JDialog {
         });
 
         jLabel12.setText("CANTIDAD:");
+
+        txtStck.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStckKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -415,7 +451,12 @@ public class Ingreso_Productos extends javax.swing.JDialog {
             valor = crud.ingresoProductos(p);
             if (valor != "") {
                 JOptionPane.showMessageDialog(this, valor);
-                llamarHumtrusaProductos();
+                if(varCerr==2){
+                    llamarHumtrusaProductos();
+                }
+                if(varCerr==4||varCerr==1){
+                    this.setVisible(false);
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "ERROR EN LA ACTUALIZACION");
             }
@@ -470,8 +511,17 @@ public class Ingreso_Productos extends javax.swing.JDialog {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if(varCerr==1){
         this.setVisible(false);
-        }else{
+        }
+        if (varCerr==2){
         llamarHumtrusaProductos();
+        }
+        if(varCerr==3){
+        this.dispose();
+        Ingreso_Productos hp = new Ingreso_Productos(new javax.swing.JFrame(), true,4);
+        hp.setVisible(true);
+        }
+        if(varCerr==4){
+        this.setVisible(false);
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -512,6 +562,61 @@ public class Ingreso_Productos extends javax.swing.JDialog {
         ag.setVisible(true);
         refrescarComboBoxProductos();
     }//GEN-LAST:event_btnAgregarMedidaActionPerformed
+
+    private void txtcompraRefKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcompraRefKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtcompraRef.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtcompraRefKeyTyped
+
+    private void txtCompraUltKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompraUltKeyTyped
+       if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtCompraUlt.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCompraUltKeyTyped
+
+    private void txtPrecioventaAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioventaAKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtPrecioventaA.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioventaAKeyTyped
+
+    private void txtprecioventaBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioventaBKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtprecioventaB.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtprecioventaBKeyTyped
+
+    private void txtprecioventaCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioventaCKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtprecioventaC.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtprecioventaCKeyTyped
+
+    private void txtStckKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStckKeyTyped
+       char car = evt.getKeyChar();
+       if (txtStck.getText().length() >= 9) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStckKeyTyped
 
     /**
      * @param args the command line arguments

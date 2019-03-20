@@ -305,9 +305,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        CbxFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "contado", "credito" }));
+        CbxFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "Contado", "Credito" }));
 
-        CbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Nota de venta" }));
+        CbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "Factura", "Nota de venta" }));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -531,7 +531,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnBuscarcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarcedulaActionPerformed
-        elegir_usuarios eu = new elegir_usuarios(new javax.swing.JFrame(), true);
+        elegir_usuarios eu = new elegir_usuarios(new javax.swing.JFrame(), rootPaneCheckingEnabled);
         eu.setVisible(true);
         if (eu.getUsuario().getId() != null) {
             u = eu.getUsuario();
@@ -792,6 +792,17 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }
 
     private void BtnBuscarprodnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarprodnombreActionPerformed
+        if(CbxFormaPago.getSelectedIndex()==0 && CbxTipoVenta.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(rootPane, "Elija Forma De Pago y Tipo De Venta");
+        }
+        if(CbxFormaPago.getSelectedIndex()!=0 && CbxTipoVenta.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(rootPane, "Elija Tipo De Venta");
+        }
+        if(CbxFormaPago.getSelectedIndex()==0 && CbxTipoVenta.getSelectedIndex()!=0){
+            JOptionPane.showMessageDialog(rootPane, "Elija Forma De Pago");
+        }
+        
+        if(CbxFormaPago.getSelectedIndex()!=0 && CbxTipoVenta.getSelectedIndex()!=0){
         TxtProdNombre.setText("");
         TxtProdPrecio.setText("");
         TxtProdCantidad.setText("");
@@ -828,7 +839,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         }
 
-
+        }
     }//GEN-LAST:event_BtnBuscarprodnombreActionPerformed
 
     private void TablaListarVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaListarVentasMousePressed

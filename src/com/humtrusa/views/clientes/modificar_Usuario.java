@@ -98,6 +98,11 @@ public class modificar_Usuario extends javax.swing.JDialog {
                 txtNombresFocusLost(evt);
             }
         });
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("APELLIDOS:");
@@ -105,6 +110,11 @@ public class modificar_Usuario extends javax.swing.JDialog {
         txtApellidos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtApellidosFocusLost(evt);
+            }
+        });
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosKeyTyped(evt);
             }
         });
 
@@ -310,6 +320,22 @@ public void llenarFormulario() {
     private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
         txtDireccion.setText(txtDireccion.getText().toUpperCase());
     }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+       char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidosKeyTyped
 
     /**
      * @param args the command line arguments
