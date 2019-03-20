@@ -110,6 +110,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento = new javax.swing.JTextField();
         TxtDescuentoPorcentaje = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        BtnAddIten1 = new javax.swing.JButton();
+        BtnAddIten2 = new javax.swing.JButton();
         BtnGenerarVenta = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -364,13 +366,27 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         jLabel1.setText("% Descuento:");
 
+        BtnAddIten1.setText("Editar Precio");
+        BtnAddIten1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddIten1ActionPerformed(evt);
+            }
+        });
+
+        BtnAddIten2.setText("Editar Descuento");
+        BtnAddIten2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddIten2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(26, 26, 26)
@@ -379,10 +395,18 @@ public class MenuPreVentas extends javax.swing.JDialog {
                         .addComponent(BtnBuscarprodnombre))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(BtnAddIten))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtDescuentoPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(BtnAddIten))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TxtDescuentoPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(BtnAddIten1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BtnAddIten2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
@@ -413,11 +437,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(TxtProdPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtProdPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnAddIten1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(TxtProdCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtProdCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnAddIten2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
@@ -628,7 +654,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
                 JOptionPane.showMessageDialog(rootPane, msg);
             } else {
-
+                CbxTipoVenta.setEnabled(false);
+                CbxFormaPago.setEnabled(false);
                 Detalle_ventas RegDetalleVentas = new Detalle_ventas();
                 RegDetalleVentas.setId_producto(objProd.getId_producto());
                 RegDetalleVentas.setNombre_producto(objProd.getNombre());
@@ -655,8 +682,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 TxtProdDescuento.setText("");
                 TxtProdIva.setText("");
                 TxtProdtotal.setText("");
-                TxtDescuentoPorcentaje.setText("");
-                TxtDescuentoPorcentaje.setEnabled(false);
+               // TxtDescuentoPorcentaje.setText("");
+                //TxtDescuentoPorcentaje.setEnabled(false);
 
                 CalcularDetalle();
             }
@@ -719,8 +746,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 objeto1.setIva(iva);
                 objeto1.setTotal(total);
 
-                TxtDescuentoPorcentaje.setEnabled(true);
-                TxtDescuentoPorcentaje.setText("0");
+              //  TxtDescuentoPorcentaje.setEnabled(true);
+              //  TxtDescuentoPorcentaje.setText("0");
                 TxtProdDescuento.setText("0.00");
 
             }
@@ -816,8 +843,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setText("");
         TxtProdIva.setText("");
         TxtProdtotal.setText("");
-        TxtDescuentoPorcentaje.setText("");
-        TxtDescuentoPorcentaje.setEnabled(false);
+       // TxtDescuentoPorcentaje.setText("");
+       // TxtDescuentoPorcentaje.setEnabled(false);
 
         elegirProductos hp = new elegirProductos(new javax.swing.JFrame(), true);
         hp.setVisible(true);
@@ -953,6 +980,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
            
     }//GEN-LAST:event_CbxFormaPagoActionPerformed
 
+    private void BtnAddIten1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddIten1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnAddIten1ActionPerformed
+
+    private void BtnAddIten2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddIten2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnAddIten2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1007,6 +1042,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAddIten;
+    private javax.swing.JButton BtnAddIten1;
+    private javax.swing.JButton BtnAddIten2;
     private javax.swing.JButton BtnBuscarcedula;
     private javax.swing.JButton BtnBuscarprodnombre;
     private javax.swing.JButton BtnGenerarVenta;
