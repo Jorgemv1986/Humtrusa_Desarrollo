@@ -115,7 +115,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         btnDescuento = new javax.swing.JButton();
         BtnGenerarVenta = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        BtnGenerarVenta1 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -476,14 +475,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        BtnGenerarVenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jefe.png"))); // NOI18N
-        BtnGenerarVenta1.setText("consumidor final");
-        BtnGenerarVenta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGenerarVenta1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -501,9 +492,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                         .addGap(77, 77, 77)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BtnGenerarVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnGenerarVenta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(BtnGenerarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
@@ -512,15 +501,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BtnGenerarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnGenerarVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnGenerarVenta)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1002,17 +989,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDescuentoActionPerformed
 
-    private void BtnGenerarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVenta1ActionPerformed
-        TxtCedula.setText("9999999999");
-        TxtNombre.setText("CONSUMIDOR FINAL");
-        TxtDirec.setText("************************");
-        TxtDirec.setText("************************");
-        TxtTelefono.setText("************************");
-        TxtCorreo.setText("************************");
-        CbxFormaPago.setSelectedItem("Contado");
-        TxtDescuentoPorcentaje.setText("5");
-    }//GEN-LAST:event_BtnGenerarVenta1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1070,7 +1046,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JButton BtnBuscarcedula;
     private javax.swing.JButton BtnBuscarprodnombre;
     private javax.swing.JButton BtnGenerarVenta;
-    private javax.swing.JButton BtnGenerarVenta1;
     private javax.swing.JComboBox<String> CbxFormaPago;
     private javax.swing.JComboBox<String> CbxTipoVenta;
     private javax.swing.JTable TablaListarVentas;
