@@ -272,10 +272,13 @@
                           <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" pref="227" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="BtnGenerarVenta" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="BtnGenerarVenta" max="32767" attributes="0"/>
+                              <Component id="BtnGenerarVenta1" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
@@ -292,7 +295,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel9" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="BtnGenerarVenta" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtnGenerarVenta" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="BtnGenerarVenta1" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -514,8 +519,8 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="BtnAddIten1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="BtnAddIten2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btnEditarPrecio" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btnDescuento" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -559,13 +564,13 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TxtProdPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="BtnAddIten1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEditarPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TxtProdCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="BtnAddIten2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDescuento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -688,20 +693,20 @@
                 <Property name="text" type="java.lang.String" value="% Descuento:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="BtnAddIten1">
+            <Component class="javax.swing.JButton" name="btnEditarPrecio">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar Precio"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAddIten1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarPrecioActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="BtnAddIten2">
+            <Component class="javax.swing.JButton" name="btnDescuento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar Descuento"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAddIten2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDescuentoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -718,6 +723,17 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
+        </Component>
+        <Component class="javax.swing.JButton" name="BtnGenerarVenta1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/iconos/jefe.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="consumidor final"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnGenerarVenta1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -61,7 +61,7 @@ public class Medidas_productos extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("COMPONENTES CLASE PRODUCTO");
+        jLabel6.setText("COMPONENTES MEDIDAS PRODUCTO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
