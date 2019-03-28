@@ -272,10 +272,7 @@
                           <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" pref="227" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="BtnGenerarVenta" max="32767" attributes="0"/>
-                              <Component id="BtnGenerarVenta1" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="BtnGenerarVenta" min="-2" pref="143" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="37" max="32767" attributes="0"/>
@@ -288,7 +285,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -296,8 +293,6 @@
                       <Component id="jLabel9" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="BtnGenerarVenta" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="BtnGenerarVenta1" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -646,6 +641,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdCantidad">
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtProdCantidadActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtProdCantidadKeyReleased"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtProdCantidadKeyTyped"/>
               </Events>
@@ -684,6 +680,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="TxtDescuentoPorcentaje">
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtDescuentoPorcentajeActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtDescuentoPorcentajeKeyReleased"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtDescuentoPorcentajeKeyTyped"/>
               </Events>
@@ -723,17 +720,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
-        </Component>
-        <Component class="javax.swing.JButton" name="BtnGenerarVenta1">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/iconos/jefe.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="consumidor final"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnGenerarVenta1ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
